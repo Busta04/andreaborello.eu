@@ -17,7 +17,7 @@ import tappeBiografia from '../data/biografia.json';
       {tappeBiografia.map((tappa, index) => (
         <article class={`bio-row ${index % 2 !== 0 ? 'reverse' : ''}`}>
           <div class="bio-image-col">
-            <img src={tappa.immagine} alt={tappa.alt} class="bio-image" />
+            <img src={`${import.meta.env.BASE_URL}${tappa.immagine}`} alt={tappa.alt} class="bio-image" />
           </div>
           <div class="bio-text-col">
             <span class="bio-year">{tappa.anno}</span>

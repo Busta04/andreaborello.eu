@@ -13,10 +13,10 @@ const prossimiEventi = tuttiEventi
   <section class="hero">
     <div class="hero-container">
       <div class="hero-image-wrapper">
-        <img src="/foto-andrea.JPG" alt="Andrea Borello" class="hero-photo" />
+        <img src={`${import.meta.env.BASE_URL}/foto-andrea.jpg`} alt="Andrea Borello" class="hero-photo" />
       </div>
       <div class="hero-content">
-        <img src="/logo-pd.png" alt="Logo Partito Democratico" class="pd-logo" />
+        <img src={`${import.meta.env.BASE_URL}/logo-pd.png`} alt="Logo PD" class="pd-logo" />
         <h1>Andrea Borello</h1>
         <blockquote class="citazione">
           "Costruiamo insieme un futuro più equo, sostenibile e vicino alle persone."
@@ -47,7 +47,7 @@ const prossimiEventi = tuttiEventi
         </a>
       </div>
       <div class="center-btn">
-        <a href="/social" class="btn btn-secondary">Vedi tutti i profili social &rarr;</a>
+        <a href={`${import.meta.env.BASE_URL}/social`} class="btn btn-secondary">Vedi tutti i profili social &rarr;</a>
       </div>
     </section>
 
@@ -70,7 +70,7 @@ const prossimiEventi = tuttiEventi
         </div>
       )}
       <div class="center-btn">
-        <a href="/eventi" class="btn btn-primary">Tutti gli eventi &rarr;</a>
+        <a href={`${import.meta.env.BASE_URL}/eventi`} class="btn btn-primary">Tutti gli eventi &rarr;</a>
       </div>
     </section>
   </div>

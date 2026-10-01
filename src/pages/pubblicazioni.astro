@@ -18,7 +18,7 @@ import libri from '../data/pubblicazioni.json';
         <article class="book-card">
           <!-- COVER DEL LIBRO -->
           <div class="book-cover-col">
-            <img src={libro.copertina} alt={`Copertina del libro ${libro.titolo}`} class="book-cover" />
+            <img src={`${import.meta.env.BASE_URL}${libro.copertina}`} alt={`Copertina di ${libro.titolo}`} class="book-cover" />
           </div>
 
           <!-- DETTAGLI E CONTENUTO -->
