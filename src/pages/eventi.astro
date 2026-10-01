@@ -1,0 +1,265 @@
+---
+import Layout from '../layouts/Layout.astro';
+import tuttiEventi from '../data/eventi.json';
+
+// Data attuale per separare eventi futuri da quelli passati
+const oggi = new Date().toISOString().split('T')[0];
+
+// Eventi futuri (incluso oggi) ordinati dal più vicino al più lontano
+const prossimiEventi = tuttiEventi
+  .filter((e) => e.data >= oggi)
+  .sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime());
+
+// Eventi passati ordinati dal più recente al meno recente
+const eventiPassati = tuttiEventi
+  .filter((e) => e.data < oggi)
+  .sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime());
+
+// Funzione per formattare la data nel formato italiano (es. 15 Ottobre 2026)
+function formattaData(dataStr: string) {
+  const opzioni: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
+  return new Date(dataStr).toLocaleDateString('it-IT', opzioni);
+}
+---
+
+<Layout title="Eventi">
+  <div class="page-header">
+    <div class="container">
+      <h1>Eventi ed Incontri</h1>
+      <p>Incontra Andrea Borello sul territorio, partecipa ai dibattiti e porta le tue idee.</p>
+    </div>
+  </div>
+
+  <div class="container page-content">
+    <!-- SEZIONE PROSSIMI EVENTI -->
+    <section class="events-section">
+      <h2 class="section-title">
+        <span class="badge badge-upcoming">In programma</span> Prossimi Eventi
+      </h2>
+
+      {prossimiEventi.length === 0 ? (
+        <p class="empty-message">Al momento non ci sono eventi futuri in programma. Torna a trovarci presto!</p>
+      ) : (
+        <div class="events-grid">
+          {prossimiEventi.map((evento) => (
+            <article class="event-card upcoming">
+              <div class="event-date-badge">
+                <span class="date-day">{new Date(evento.data).getDate()}</span>
+                <span class="date-month">{new Date(evento.data).toLocaleString('it-IT', { month: 'short' }).toUpperCase()}</span>
+              </div>
+              <div class="event-details">
+                <h3>{evento.titolo}</h3>
+                <div class="event-meta">
+                  <span>📅 {formattaData(evento.data)}</span>
+                  <span>⏰ Ore {evento.ora}</span>
+                  <span>📍 {evento.luogo}</span>
+                </div>
+                <p class="event-description">{evento.descrizione}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </section>
+
+    <!-- SEZIONE EVENTI PASSATI -->
+    {eventiPassati.length > 0 && (
+      <section class="events-section past-section">
+        <h2 class="section-title">
+          <span class="badge badge-past">Archivio</span> Eventi Passati
+        </h2>
+        <div class="events-grid">
+          {eventiPassati.map((evento) => (
+            <article class="event-card past">
+              <div class="event-details">
+                <h3>{evento.titolo}</h3>
+                <div class="event-meta">
+                  <span>📅 {formattaData(evento.data)}</span>
+                  <span>📍 {evento.luogo}</span>
+                </div>
+                <p class="event-description">{evento.descrizione}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
+  </div>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Header della pagina */
+  .page-header {
+    background-color: #1f2937;
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+    border-bottom: 4px solid var(--pd-red);
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+    font-size: 1.1rem;
+    color: #d1d5db;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Contenuto */
+  .page-content {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .events-section {
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #111827;
+  }
+
+  /* Badge */
+  .badge {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-upcoming {
+    background-color: var(--pd-red);
+    color: white;
+  }
+
+  .badge-past {
+    background-color: #6b7280;
+    color: white;
+  }
+
+  /* Layout Schede Evento */
+  .events-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .event-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 1px solid #e5e7eb;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .event-card.upcoming {
+    border-left: 6px solid var(--pd-red);
+  }
+
+  .event-card.past {
+    border-left: 6px solid #9ca3af;
+    background-color: #f8fafc;
+    opacity: 0.85;
+  }
+
+  /* Badge Data Laterale */
+  .event-date-badge {
+    background-color: var(--pd-red);
+    color: white;
+    padding: 0.8rem;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .date-day {
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .date-month {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 0.2rem;
+  }
+
+  /* Dettagli dell'Evento */
+  .event-details {
+    flex: 1;
+  }
+
+  .event-details h3 {
+    font-size: 1.3rem;
+    color: #111827;
+    margin-bottom: 0.5rem;
+  }
+
+  .event-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #4b5563;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .event-description {
+    line-height: 1.6;
+    color: #374151;
+  }
+
+  .empty-message {
+    text-align: center;
+    color: #6b7280;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    border: 1px dashed #d1d5db;
+  }
+
+  /* Responsive per schermi piccoli */
+  @media (max-width: 600px) {
+    .event-card {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .event-date-badge {
+      flex-direction: row;
+      gap: 0.5rem;
+      align-items: center;
+      min-width: auto;
+      padding: 0.4rem 0.8rem;
+    }
+
+    .date-day {
+      font-size: 1.2rem;
+    }
+  }
+</style>

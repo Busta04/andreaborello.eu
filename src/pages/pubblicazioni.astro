@@ -1,0 +1,235 @@
+---
+import Layout from '../layouts/Layout.astro';
+import libri from '../data/pubblicazioni.json';
+---
+
+<Layout title="Pubblicazioni">
+  <!-- HEADER DI PAGINA -->
+  <div class="page-header">
+    <div class="container">
+      <h1>Pubblicazioni e Libri</h1>
+      <p>I saggi, le analisi e i testi scritti da Andrea Borello per approfondire le sfide del nostro tempo.</p>
+    </div>
+  </div>
+
+  <div class="container page-content">
+    <div class="books-wrapper">
+      {libri.map((libro) => (
+        <article class="book-card">
+          <!-- COVER DEL LIBRO -->
+          <div class="book-cover-col">
+            <img src={libro.copertina} alt={`Copertina del libro ${libro.titolo}`} class="book-cover" />
+          </div>
+
+          <!-- DETTAGLI E CONTENUTO -->
+          <div class="book-info-col">
+            <div class="book-header">
+              <span class="book-publisher">{libro.editore} ({libro.anno})</span>
+              <h2>{libro.titolo}</h2>
+              <p class="book-subtitle">{libro.sottotitolo}</p>
+            </div>
+
+            <blockquote class="book-quote">{libro.citazione}</blockquote>
+
+            <p class="book-description">{libro.descrizione}</p>
+
+            <div class="book-meta">
+              <span><strong>Pagine:</strong> {libro.pagine}</span>
+              <span><strong>ISBN:</strong> {libro.isbn}</span>
+            </div>
+
+            <!-- SEZIONE ACQUISTO -->
+            <div class="buy-section">
+              <h3>Acquista online:</h3>
+              <div class="buy-links">
+                {libro.linkAcquisto.map((link) => (
+                  <a 
+                    href={link.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="buy-btn"
+                  >
+                    🛒 {link.nome}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Header della pagina */
+  .page-header {
+    background-color: #1f2937;
+    color: white;
+    padding: 3.5rem 0;
+    text-align: center;
+    border-bottom: 4px solid var(--pd-red);
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+    font-size: 1.1rem;
+    color: #d1d5db;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .page-content {
+    padding-top: 3.5rem;
+    padding-bottom: 4rem;
+  }
+
+  /* Wrapper Libri */
+  .books-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  /* Scheda Libro */
+  .book-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    border: 1px solid #e5e7eb;
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+  }
+
+  /* Colonna Copertina */
+  .book-cover-col {
+    flex: 0 0 260px;
+  }
+
+  .book-cover {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.25);
+    border: 1px solid #d1d5db;
+  }
+
+  /* Colonna Informazioni */
+  .book-info-col {
+    flex: 1;
+  }
+
+  .book-publisher {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--pd-red);
+    letter-spacing: 0.5px;
+  }
+
+  .book-info-col h2 {
+    font-size: 2rem;
+    color: #111827;
+    margin: 0.2rem 0;
+  }
+
+  .book-subtitle {
+    font-size: 1.1rem;
+    color: #4b5563;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+  }
+
+  .book-quote {
+    background-color: #f9fafb;
+    border-left: 4px solid var(--pd-red);
+    padding: 0.8rem 1.2rem;
+    font-style: italic;
+    color: #374151;
+    margin-bottom: 1.5rem;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.95rem;
+  }
+
+  .book-description {
+    line-height: 1.7;
+    color: #374151;
+    margin-bottom: 1.5rem;
+    font-size: 1.02rem;
+  }
+
+  .book-meta {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  /* Sezione Acquisto */
+  .buy-section h3 {
+    font-size: 1rem;
+    color: #111827;
+    margin-bottom: 0.8rem;
+  }
+
+  .buy-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .buy-btn {
+    display: inline-block;
+    background-color: #f3f4f6;
+    color: #1f2937;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px solid #d1d5db;
+    transition: all 0.2s ease;
+  }
+
+  .buy-btn:hover {
+    background-color: var(--pd-red);
+    color: white;
+    border-color: var(--pd-red);
+    transform: translateY(-2px);
+  }
+
+  /* Responsive per Smartphone */
+  @media (max-width: 768px) {
+    .book-card {
+      flex-direction: column;
+      padding: 1.5rem;
+      gap: 1.8rem;
+    }
+
+    .book-cover-col {
+      flex: 1;
+      max-width: 200px;
+      margin: 0 auto;
+    }
+
+    .book-info-col h2 {
+      font-size: 1.6rem;
+    }
+  }
+</style>

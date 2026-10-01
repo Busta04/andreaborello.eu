@@ -1,0 +1,19 @@
+[
+  {
+    "titolo": "Un'Altra Strada",
+    "sottotitolo": "Proposte per un'Italia più equa, sostenibile e solidale",
+    "editore": "Edizioni Laterza",
+    "anno": "2025",
+    "isbn": "978-88-000-0000-0",
+    "pagine": "240",
+    "copertina": "/copertina-libro.jpg",
+    "descrizione": "Un viaggio attraverso le disuguaglianze sociali ed economiche del nostro Paese e una mappa dettagliata per superarle. In questo saggio, Andrea Borello intreccia testimonianze dal territorio, dati economici e proposte concrete per riformare il mercato del lavoro, difendere la sanità pubblica e guidare una transizione ecologica a misura di cittadino.",
+    "citazione": "«La politica non è l'arte del possibile, ma l'impegno costante nel rendere possibile ciò che è giusto.»",
+    "linkAcquisto": [
+      { "nome": "Amazon", "url": "https://www.amazon.it" },
+      { "nome": "IBS", "url": "https://www.ibs.it" },
+      { "nome": "La Feltrinelli", "url": "https://www.lafeltrinelli.it" },
+      { "nome": "Mondadori Store", "url": "https://www.mondadoristore.it" }
+    ]
+  }
+]

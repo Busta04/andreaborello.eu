@@ -1,0 +1,145 @@
+---
+import Layout from '../layouts/Layout.astro';
+import tappeBiografia from '../data/biografia.json';
+---
+
+<Layout title="Biografia">
+  <!-- INTRODUZIONE DELLA PAGINA -->
+  <div class="page-header">
+    <div class="container">
+      <h1>La mia storia</h1>
+      <p>Un percorso fatto di passione civile, impegno sul territorio e battaglie per la comunità.</p>
+    </div>
+  </div>
+
+  <div class="container page-content">
+    <div class="bio-timeline">
+      {tappeBiografia.map((tappa, index) => (
+        <article class={`bio-row ${index % 2 !== 0 ? 'reverse' : ''}`}>
+          <div class="bio-image-col">
+            <img src={tappa.immagine} alt={tappa.alt} class="bio-image" />
+          </div>
+          <div class="bio-text-col">
+            <span class="bio-year">{tappa.anno}</span>
+            <h2>{tappa.titolo}</h2>
+            <p>{tappa.testo}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Header della pagina */
+  .page-header {
+    background-color: #1f2937;
+    color: white;
+    padding: 3.5rem 0;
+    text-align: center;
+    border-bottom: 4px solid var(--pd-red);
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+    font-size: 1.1rem;
+    color: #d1d5db;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .page-content {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  /* Layout ad alternanza (Zig-Zag) */
+  .bio-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .bio-row {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  /* Inverte la colonna per i paragrafi dispari (Immagine a destra) */
+  .bio-row.reverse {
+    flex-direction: row-reverse;
+  }
+
+  /* Colonna Immagine */
+  .bio-image-col {
+    flex: 1;
+  }
+
+  .bio-image {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+  }
+
+  /* Colonna Testo */
+  .bio-text-col {
+    flex: 1;
+  }
+
+  .bio-year {
+    display: inline-block;
+    background-color: var(--pd-red);
+    color: white;
+    font-weight: 800;
+    font-size: 0.9rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+
+  .bio-text-col h2 {
+    font-size: 1.6rem;
+    color: #111827;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .bio-text-col p {
+    font-size: 1.05rem;
+    color: #4b5563;
+    line-height: 1.7;
+  }
+
+  /* Responsive: su schermi piccoli (smartphone) diventa tutto verticale */
+  @media (max-width: 768px) {
+    .bio-row,
+    .bio-row.reverse {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .bio-image {
+      height: 240px;
+    }
+
+    .bio-timeline {
+      gap: 3rem;
+    }
+  }
+</style>

@@ -1,0 +1,30 @@
+[
+  {
+    "anno": "1988",
+    "titolo": "Le radici e gli anni della formazione",
+    "testo": "Nato e cresciuto in una famiglia di lavoratori, Andrea sviluppa fin da giovanissimo una profonda sensibilità per i temi della giustizia sociale e dell'uguaglianza. Durante gli anni universitari in Scienze Politiche, partecipa attivamente ai movimenti studenteschi e al volontariato di quartiere.",
+    "immagine": "/bio1.JPG",
+    "alt": "Andrea Borello durante gli anni universitari"
+  },
+  {
+    "anno": "2012",
+    "titolo": "L'impegno nel territorio e l'associazionismo",
+    "testo": "Dopo la laurea, promuove diversi progetti di riqualificazione urbana e sostegno alle famiglie in difficoltà. La sua passione per la politica attiva lo porta a coordinare circoli locali, con un focus costante sui diritti dei lavoratori, sui servizi pubblici e sulla sostenibilità ambientale.",
+    "immagine": "/bio2.JPG",
+    "alt": "Andrea Borello ad un incontro di quartiere"
+  },
+  {
+    "anno": "2018",
+    "titolo": "L'ingresso nelle istituzioni locali",
+    "testo": "Eletto consigliere comunale, si distingue per le sue battaglie a favore del trasporto pubblico accessibile, del potenziamento degli asili nido e del contrasto alla precarietà giovanile. Lavora quotidianamente a stretto contatto con i cittadini e i sindacati del territorio.",
+    "immagine": "/bio3.JPG",
+    "alt": "Andrea Borello durante una seduta del consiglio comunale"
+  },
+  {
+    "anno": "Oggi",
+    "titolo": "Una visione per il futuro",
+    "testo": "Oggi Andrea Borello continua il suo impegno con il Partito Democratico, portando avanti una proposta politica fondata sulla transizione ecologica equa, sulla difesa della sanità pubblica e su un'economia che metta al centro le persone e non i profitti.",
+    "immagine": "/bio4.JPG",
+    "alt": "Andrea Borello ad una manifestazione pubblica"
+  }
+]

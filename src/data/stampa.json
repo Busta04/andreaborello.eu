@@ -1,0 +1,34 @@
+[
+  {
+    "testata": "La Repubblica",
+    "data": "2026-09-18",
+    "titolo": "«Servono politiche sul lavoro giovanile e casa accessibile»: l'intervista ad Andrea Borello",
+    "estratto": "Un'analisi approfondita sulle priorità economiche e sociali per le nuove generazioni, tra proposte di legge locali e interventi per calmierare gli affitti.",
+    "url": "https://www.repubblica.it",
+    "categoria": "Intervista"
+  },
+  {
+    "testata": "Corriere della Sera",
+    "data": "2026-07-04",
+    "titolo": "Transizione ecologica e trasporti pubblici: la proposta del PD sul territorio",
+    "estratto": "Borello illustra il piano straordinario per il potenziamento dei mezzi pubblici a emissioni zero e la gratuità per gli studenti.",
+    "url": "https://www.corriere.it",
+    "categoria": "Articolo"
+  },
+  {
+    "testata": "Il Fatto Quotidiano",
+    "data": "2026-04-12",
+    "titolo": "Sanità pubblica, sanità di tutti: la mobilitazione di piazza",
+    "estratto": "Oltre duemila persone al corteo per la difesa delle strutture sanitarie locali. Borello: «Non un euro in meno alla salute dei cittadini».",
+    "url": "https://www.ilfattoquotidiano.it",
+    "categoria": "Cronaca"
+  },
+  {
+    "testata": "La Stampa",
+    "data": "2025-11-20",
+    "titolo": "Riqualificazione urbana e periferie: il dibattito aperto con la cittadinanza",
+    "estratto": "Resoconto dell'assemblea pubblica tenutasi ieri sera. Focus sui fondi dedicati ai centri di aggregazione giovanile e alle aree verdi.",
+    "url": "https://www.lastampa.it",
+    "categoria": "Reportage"
+  }
+]

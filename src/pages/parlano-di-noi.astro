@@ -1,0 +1,200 @@
+---
+import Layout from '../layouts/Layout.astro';
+import articoli from '../data/stampa.json';
+
+// Ordina gli articoli dal più recente al meno recente
+const articoliOrdinati = articoli.sort(
+  (a, b) => new Date(b.data).getTime() - new Date(a.data).getTime()
+);
+
+// Funzione per formattare la data nel formato italiano
+function formattaData(dataStr: string) {
+  const opzioni: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
+  return new Date(dataStr).toLocaleDateString('it-IT', opzioni);
+}
+---
+
+<Layout title="Parlano di noi">
+  <!-- HEADER DI PAGINA -->
+  <div class="page-header">
+    <div class="container">
+      <h1>Rassegna Stampa</h1>
+      <p>Articoli, interviste e approfondimenti sui principali quotidiani e testate giornalistiche.</p>
+    </div>
+  </div>
+
+  <div class="container page-content">
+    {articoliOrdinati.length === 0 ? (
+      <p class="empty-message">Nessun articolo presente in archivio al momento.</p>
+    ) : (
+      <div class="press-grid">
+        {articoliOrdinati.map((articolo) => (
+          <article class="press-card">
+            <div class="press-header">
+              <span class="press-source">{articolo.testata}</span>
+              <span class="press-category">{articolo.categoria}</span>
+            </div>
+            
+            <h2 class="press-title">{articolo.titolo}</h2>
+            
+            <p class="press-excerpt">"{articolo.estratto}"</p>
+            
+            <div class="press-footer">
+              <span class="press-date">📅 {formattaData(articolo.data)}</span>
+              <a 
+                href={articolo.url} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="read-more-btn"
+              >
+                Leggi su {articolo.testata} &rarr;
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    )}
+  </div>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Header della pagina */
+  .page-header {
+    background-color: #1f2937;
+    color: white;
+    padding: 3.5rem 0;
+    text-align: center;
+    border-bottom: 4px solid var(--pd-red);
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+    font-size: 1.1rem;
+    color: #d1d5db;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .page-content {
+    padding-top: 3.5rem;
+    padding-bottom: 4rem;
+  }
+
+  /* Grid articoli */
+  .press-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 1.8rem;
+  }
+
+  /* Scheda singolo articolo */
+  .press-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.8rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .press-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+  }
+
+  /* Header scheda */
+  .press-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .press-source {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--pd-red);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .press-category {
+    background-color: #f3f4f6;
+    color: #4b5563;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    text-transform: uppercase;
+  }
+
+  /* Titolo ed estratto */
+  .press-title {
+    font-size: 1.25rem;
+    color: #111827;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .press-excerpt {
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  /* Footer scheda */
+  .press-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #f3f4f6;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .press-date {
+    font-size: 0.85rem;
+    color: #6b7280;
+    font-weight: 500;
+  }
+
+  .read-more-btn {
+    color: var(--pd-red);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+  }
+
+  .read-more-btn:hover {
+    color: var(--pd-red-dark);
+    text-decoration: underline;
+  }
+
+  .empty-message {
+    text-align: center;
+    color: #6b7280;
+    padding: 3rem;
+    background: white;
+    border-radius: 12px;
+    border: 1px dashed #d1d5db;
+  }
+</style>

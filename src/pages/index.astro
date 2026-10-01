@@ -1,11 +1,255 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import tuttiEventi from '../data/eventi.json';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Seleziona solo i primi 3 eventi per la home page
+const prossimiEventi = tuttiEventi
+  .sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime())
+  .slice(0, 3);
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Home">
+  <!-- HERO SECTION: SFONDO ROSSO, FOTO, LOGO E CITAZIONE -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-image-wrapper">
+        <img src="/foto-andrea.JPG" alt="Andrea Borello" class="hero-photo" />
+      </div>
+      <div class="hero-content">
+        <img src="/logo-pd.png" alt="Logo Partito Democratico" class="pd-logo" />
+        <h1>Andrea Borello</h1>
+        <blockquote class="citazione">
+          "Costruiamo insieme un futuro più equo, sostenibile e vicino alle persone."
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-container">
+    <!-- SEZIONE SOCIAL (3 DIV + PULSANTE) -->
+    <section class="section">
+      <h2 class="section-title">Seguimi sui Social</h2>
+      <div class="social-grid">
+        <a href="https://instagram.com" target="_blank" class="social-card instagram">
+          <div class="social-icon">📷</div>
+          <h3>Instagram</h3>
+          <p>@andrea.borello</p>
+        </a>
+        <a href="https://facebook.com" target="_blank" class="social-card facebook">
+          <div class="social-icon">📘</div>
+          <h3>Facebook</h3>
+          <p>Andrea Borello Ufficiale</p>
+        </a>
+        <a href="https://tiktok.com" target="_blank" class="social-card tiktok">
+          <div class="social-icon">🎵</div>
+          <h3>TikTok</h3>
+          <p>@andrea.borello</p>
+        </a>
+      </div>
+      <div class="center-btn">
+        <a href="/social" class="btn btn-secondary">Vedi tutti i profili social &rarr;</a>
+      </div>
+    </section>
+
+    <!-- SEZIONE PROSSIMI EVENTI (MAX 3 + PULSANTE) -->
+    <section class="section">
+      <h2 class="section-title">Prossimi Eventi</h2>
+      {prossimiEventi.length === 0 ? (
+        <p class="no-data">Nessun evento in programma al momento.</p>
+      ) : (
+        <div class="events-list">
+          {prossimiEventi.map((evento) => (
+            <article class="event-card">
+              <h3>{evento.titolo}</h3>
+              <div class="event-meta">
+                📅 <strong>Data:</strong> {evento.data} alle {evento.ora} | 📍 <strong>Luogo:</strong> {evento.luogo}
+              </div>
+              <p>{evento.descrizione}</p>
+            </article>
+          ))}
+        </div>
+      )}
+      <div class="center-btn">
+        <a href="/eventi" class="btn btn-primary">Tutti gli eventi &rarr;</a>
+      </div>
+    </section>
+  </div>
 </Layout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    background-color: var(--pd-red);
+    color: white;
+    padding: 3rem 1rem;
+    box-shadow: inset 0 -10px 15px -10px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-photo {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  .hero-content {
+    max-width: 550px;
+    text-align: center;
+  }
+
+  .pd-logo {
+    height: 65px;
+    margin-bottom: 1rem;
+    background: white;
+    border-radius: 50%;
+    padding: 2px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 0.8rem;
+    letter-spacing: 1px;
+  }
+
+  .citazione {
+    font-size: 1.25rem;
+    font-style: italic;
+    opacity: 0.95;
+    line-height: 1.4;
+  }
+
+  /* General Page Layout */
+  .page-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .section {
+    margin-bottom: 3.5rem;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.8rem;
+    color: #111827;
+    position: relative;
+  }
+
+  /* Social Grid */
+  .social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .social-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-color);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 1px solid #e5e7eb;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .social-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+  }
+
+  .social-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .social-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .social-card p {
+    font-size: 0.85rem;
+    color: #6b7280;
+  }
+
+  /* Events List */
+  .events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .event-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.25rem;
+    border-left: 5px solid var(--pd-red);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .event-card h3 {
+    margin-bottom: 0.4rem;
+  }
+
+  .event-meta {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-bottom: 0.6rem;
+  }
+
+  /* Buttons */
+  .center-btn {
+    text-align: center;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-primary {
+    background-color: var(--pd-red);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--pd-red-dark);
+  }
+
+  .btn-secondary {
+    background-color: #374151;
+    color: white;
+  }
+
+  .btn-secondary:hover {
+    background-color: #1f2937;
+  }
+
+  .no-data {
+    text-align: center;
+    color: #6b7280;
+  }
+</style>
