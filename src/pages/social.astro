@@ -1,0 +1,199 @@
+---
+import Layout from '../layouts/Layout.astro';
+import canaliSocial from '../data/social.json';
+---
+
+<Layout title="I Social">
+  <!-- HEADER DI PAGINA -->
+  <div class="page-header">
+    <div class="container">
+      <h1>Canali Social Ufficiali</h1>
+      <p>Rimani in contatto con Andrea Borello, partecipa alle discussioni e segui le attività quotidiane sui canali digitali.</p>
+    </div>
+  </div>
+
+  <div class="container page-content">
+    <!-- GRIGLIA PROFILI SOCIAL -->
+    <div class="social-grid">
+      {canaliSocial.map((social) => (
+        <article class="social-card">
+          <div class="social-card-top">
+            <span class="social-icon" style={`color: ${social.colore};`}>{social.icona}</span>
+            <span class="social-badge">{social.badge}</span>
+          </div>
+
+          <div class="social-info">
+            <h2>{social.nome}</h2>
+            <span class="social-handle">{social.handle}</span>
+            <p class="social-desc">{social.descrizione}</p>
+          </div>
+
+          <a 
+            href={social.url} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="social-btn"
+          >
+            Segui su {social.nome} &rarr;
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <!-- BOX PARTECIPAZIONE -->
+    <section class="community-box">
+      <h2>Entra nella community</h2>
+      <p>
+        Hai domande, segnalazioni sul tuo quartiere o idee da proporre? Scrivimi direttamente tramite i messaggi ufficiali sui canali social o partecipa nei commenti dei post. La partecipazione attiva è il primo passo per costruire insieme una politica migliore.
+      </p>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Header della pagina */
+  .page-header {
+    background-color: #1f2937;
+    color: white;
+    padding: 3.5rem 0;
+    text-align: center;
+    border-bottom: 4px solid var(--pd-red);
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+    font-size: 1.1rem;
+    color: #d1d5db;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .page-content {
+    padding-top: 3.5rem;
+    padding-bottom: 4rem;
+  }
+
+  /* Griglia Social */
+  .social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.8rem;
+    margin-bottom: 3.5rem;
+  }
+
+  /* Scheda singolo social */
+  .social-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .social-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+  }
+
+  .social-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+  }
+
+  .social-icon {
+    font-size: 2.5rem;
+  }
+
+  .social-badge {
+    background-color: #f3f4f6;
+    color: #4b5563;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    text-transform: uppercase;
+  }
+
+  .social-info h2 {
+    font-size: 1.4rem;
+    color: #111827;
+    margin-bottom: 0.2rem;
+  }
+
+  .social-handle {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--pd-red);
+    margin-bottom: 0.8rem;
+  }
+
+  .social-desc {
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.5;
+    margin-bottom: 1.8rem;
+    flex-grow: 1;
+  }
+
+  .social-btn {
+    display: block;
+    text-align: center;
+    background-color: #1f2937;
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+  }
+
+  .social-btn:hover {
+    background-color: var(--pd-red);
+  }
+
+  /* Box Community */
+  .community-box {
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    text-align: center;
+    border-left: 6px solid var(--pd-red);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+    border-top: 1px solid #e5e7eb;
+    border-right: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .community-box h2 {
+    font-size: 1.6rem;
+    color: #111827;
+    margin-bottom: 0.8rem;
+  }
+
+  .community-box p {
+    font-size: 1.05rem;
+    color: #4b5563;
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+</style>

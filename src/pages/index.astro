@@ -2,8 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import tuttiEventi from '../data/eventi.json';
 
-// Seleziona solo i primi 3 eventi per la home page
+// Ottieni la data di oggi nel formato YYYY-MM-DD
+const oggi = new Date().toISOString().split('T')[0];
+
+// 1. Filtra solo gli eventi futuri (o di oggi)
+// 2. Ordina gli eventi dal più vicino al più lontano
+// 3. Prendi solo i primi 3
 const prossimiEventi = tuttiEventi
+  .filter((evento) => evento.data >= oggi)
   .sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime())
   .slice(0, 3);
 ---

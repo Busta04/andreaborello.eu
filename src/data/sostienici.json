@@ -1,0 +1,29 @@
+[
+  {
+    "titolo": "Patreon",
+    "piattaforma": "Abbonamento Mensile",
+    "descrizione": "Diventa un sostenitore continuativo della nostra attività politica. Con un contributo mensile ci aiuti a pianificare le attività sul territorio a lungo termine.",
+    "icona": "🅿️",
+    "badge": "Continuativo",
+    "link": "https://www.patreon.com",
+    "bottoneTesto": "Sostienici su Patreon"
+  },
+  {
+    "titolo": "Campagna Crowdfunding",
+    "piattaforma": "Donazione Una Tantum",
+    "descrizione": "Partecipa alla raccolta fondi straordinaria per finanziare i prossimi eventi pubblici, la stampa dei volantini e le affissioni sui territori.",
+    "icona": "🎯",
+    "badge": "In Evidenza",
+    "link": "https://www.gofundme.com",
+    "bottoneTesto": "Dona Ora su GoFundMe"
+  },
+  {
+    "titolo": "PayPal / Carte di Credito",
+    "piattaforma": "Donazione Rapida",
+    "descrizione": "Fai una donazione singola immediata e in totale sicurezza utilizzando la tua carta di credito, di debito o il tuo conto PayPal.",
+    "icona": "💳",
+    "badge": "Rapido",
+    "link": "https://www.paypal.com",
+    "bottoneTesto": "Dona con PayPal"
+  }
+]

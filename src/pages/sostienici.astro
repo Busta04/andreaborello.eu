@@ -1,0 +1,244 @@
+---
+import Layout from '../layouts/Layout.astro';
+import opzioniSostegno from '../data/sostienici.json';
+---
+
+<Layout title="Sostienici">
+  <!-- HEADER DI PAGINA -->
+  <div class="page-header">
+    <div class="container">
+      <h1>Sostieni la nostra campagna</h1>
+      <p>Ogni contributo, grande o piccolo, fa la differenza per costruire una politica indipendente e vicina alle persone.</p>
+    </div>
+  </div>
+
+  <div class="container page-content">
+    <!-- INTRODUZIONE MOTIVAZIONALE -->
+    <section class="support-intro">
+      <h2>Perché il tuo aiuto è importante?</h2>
+      <p>
+        La nostra è una politica che parte dal basso. Non accettiamo finanziamenti da grandi gruppi di interesse:
+        la nostra forza risiede nella comunità, nei volontari e in chi crede in un futuro più equo e sostenibile.
+        I fondi raccolti vengono utilizzati esclusivamente per sostenere le spese della campagna elettorale ed organizzare incontri pubblici.
+      </p>
+    </section>
+
+    <!-- GRIGLIA OPZIONI DI DONAZIONE -->
+    <div class="support-grid">
+      {opzioniSostegno.map((opzione) => (
+        <article class="support-card">
+          <div class="support-card-header">
+            <span class="support-icon">{opzione.icona}</span>
+            <span class="support-badge">{opzione.badge}</span>
+          </div>
+          <h3>{opzione.titolo}</h3>
+          <span class="support-subtitle">{opzione.piattaforma}</span>
+          <p class="support-description">{opzione.descrizione}</p>
+          <a 
+            href={opzione.link} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="support-btn"
+          >
+            {opzione.bottoneTesto} &rarr;
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <!-- BOX TRASPARENZA E VOLONTARIATO -->
+    <section class="extra-support">
+      <div class="extra-box transparency-box">
+        <h3>🔍 Massima Trasparenza</h3>
+        <p>
+          Tutte le donazioni sono tracciate e rendicontate nel rispetto delle normative vigenti sul finanziamento alla politica.
+        </p>
+      </div>
+      <div class="extra-box volunteer-box">
+        <h3>🤝 Diventa Volontario</h3>
+        <p>
+          Non puoi contribuire economicamente? Puoi aiutarci mettendo a disposizione il tuo tempo durante i banchetti ed eventi sul territorio!
+        </p>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Header della pagina */
+  .page-header {
+    background-color: #1f2937;
+    color: white;
+    padding: 3.5rem 0;
+    text-align: center;
+    border-bottom: 4px solid var(--pd-red);
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+    font-size: 1.1rem;
+    color: #d1d5db;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .page-content {
+    padding-top: 3.5rem;
+    padding-bottom: 4rem;
+  }
+
+  /* Intro motivazionale */
+  .support-intro {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+    border: 1px solid #e5e7eb;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .support-intro h2 {
+    font-size: 1.6rem;
+    color: #111827;
+    margin-bottom: 0.8rem;
+  }
+
+  .support-intro p {
+    font-size: 1.05rem;
+    color: #4b5563;
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* Griglia schede donazione */
+  .support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.8rem;
+    margin-bottom: 3rem;
+  }
+
+  .support-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .support-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+  }
+
+  .support-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .support-icon {
+    font-size: 2.2rem;
+  }
+
+  .support-badge {
+    background-color: #fee2e2;
+    color: var(--pd-red-dark);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.3rem 0.7rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+
+  .support-card h3 {
+    font-size: 1.35rem;
+    color: #111827;
+    margin-bottom: 0.2rem;
+  }
+
+  .support-subtitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--pd-red);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .support-description {
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 1.8rem;
+    flex-grow: 1;
+  }
+
+  .support-btn {
+    display: block;
+    text-align: center;
+    background-color: var(--pd-red);
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+  }
+
+  .support-btn:hover {
+    background-color: var(--pd-red-dark);
+  }
+
+  /* Box extra (Trasparenza e Volontariato) */
+  .extra-support {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .extra-box {
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+  }
+
+  .transparency-box {
+    background-color: #f8fafc;
+  }
+
+  .volunteer-box {
+    background-color: #f0fdf4;
+    border-color: #bbf7d0;
+  }
+
+  .extra-box h3 {
+    font-size: 1.1rem;
+    color: #111827;
+    margin-bottom: 0.5rem;
+  }
+
+  .extra-box p {
+    font-size: 0.9rem;
+    color: #4b5563;
+    line-height: 1.5;
+  }
+</style>

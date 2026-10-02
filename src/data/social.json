@@ -1,0 +1,38 @@
+[
+  {
+    "nome": "Instagram",
+    "handle": "@andreaborello_",
+    "descrizione": "Foto, storie quotidiane dal territorio e aggiornamenti sulle attività in tempo reale.",
+    "url": "https://www.instagram.com/andreaborello_/",
+    "icona": "📷",
+    "colore": "#E1306C",
+    "badge": "Foto & Storie"
+  },
+  {
+    "nome": "Facebook",
+    "handle": "Andrea Borello",
+    "descrizione": "Post di approfondimento politico, articoli, comunicati e dibattiti con la community.",
+    "url": "https://www.facebook.com/andrea.borello.104",
+    "icona": "📘",
+    "colore": "#1877F2",
+    "badge": "Community"
+  },
+  {
+    "nome": "YouTube",
+    "handle": "@andreaborello_",
+    "descrizione": "Interventi integrali, video degli eventi pubblici, interviste e rubriche di analisi.",
+    "url": "https://www.youtube.com/@andreaborello_",
+    "icona": "▶️",
+    "colore": "#FF0000",
+    "badge": "Video & Dirette"
+  },
+  {
+    "nome": "TikTok",
+    "handle": "@andreaborello_",
+    "descrizione": "Pillole video veloci, dietro le quinte della politica e risposte dirette alle domande dei giovani.",
+    "url": "https://www.tiktok.com/@andreaborello_",
+    "icona": "🎵",
+    "colore": "#000000",
+    "badge": "Short Video"
+  }
+]
