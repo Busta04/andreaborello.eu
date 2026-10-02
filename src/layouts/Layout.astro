@@ -20,7 +20,7 @@ const { title } = Astro.props;
       <div class="nav-container">
         <a href="/" class="nav-logo">Andrea Borello</a>
         <nav class="nav-links">
-          <a href="/">Home</a>
+          <a href={`${import.meta.env.BASE_URL}/`}>Home</a>
           <a href={`${import.meta.env.BASE_URL}/biografia`}>Biografia</a>
           <a href={`${import.meta.env.BASE_URL}/social`}>Social</a>
           <a href={`${import.meta.env.BASE_URL}/pubblicazioni`}>Pubblicazioni</a>
