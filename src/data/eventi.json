@@ -1,37 +1,100 @@
 [
   {
-    "titolo": "Vittoria campionato dei GAY",
-    "data": "2026-05-1",
-    "ora": "11:00",
-    "luogo": "Via caccamerda, Torino",
-    "descrizione": "gara di succhiata di pisello"
-  },
-  {
-    "titolo": "Incontro sul Lavoro e i Diritti dei Giovani",
-    "data": "2026-10-15",
+    "titolo": "Festa dell'Unità Certaldo",
+    "data": "2026-08-09",
     "ora": "21:00",
-    "luogo": "Piazza Maggiore, Bologna",
-    "descrizione": "Un dibattito aperto su precarietà, stipendi minimi e le sfide delle nuove generazioni nel mercato del lavoro."
+    "luogo": "Terrazza Calindri, Certaldo (Firenze)",
+    "descrizione": "Incontro/evento con Giordano Gasperini"
   },
   {
-    "titolo": "Presentazione del Libro \"Un'Altra Strada\"",
-    "data": "2026-11-02",
-    "ora": "18:30",
-    "luogo": "Casa della Cultura, Milano",
-    "descrizione": "Presentazione del nuovo saggio politico con dibattito e firma copie a seguire."
+    "titolo": "Festival d'Enza",
+    "data": "2026-08-10",
+    "ora": "21:00",
+    "luogo": "Parco La Manara, Bibbiano",
+    "descrizione": "Incontro/evento con Giu Fossa"
   },
   {
-    "titolo": "Assemblea Pubblica sulla Transizione Ecologica",
-    "data": "2026-12-05",
+    "titolo": "Savona Street Fest",
+    "data": "2026-08-30",
     "ora": "17:00",
-    "luogo": "Sala Consiliare, Firenze",
-    "descrizione": "Confronto con associazioni ambientaliste e cittadini sulle politiche green locali."
+    "luogo": "Piazzale Eroe dei Due Mondi, Savona",
+    "descrizione": "Savona Street Fest"
   },
   {
-    "titolo": "Inaugurazione della Sede del Comitato",
-    "data": "2026-05-10",
-    "ora": "11:00",
-    "luogo": "Via Roma 45, Torino",
-    "descrizione": "Festa d'apertura della nuova sede elettorale con rinfresco e momento di ascolto del territorio."
+    "titolo": "Festa dell'Unità Torino",
+    "data": "2026-09-06",
+    "ora": "21:00",
+    "luogo": "Parco Ruffini, Torino",
+    "descrizione": "Incontro/evento con Pier Maran"
+  },
+  {
+    "titolo": "Festa dell'Unità Padova",
+    "data": "2026-09-10",
+    "ora": "21:00",
+    "luogo": "Parco Milcovich (Arcella), Padova",
+    "descrizione": "Incontro/evento con Virginia Libero"
+  },
+  {
+    "titolo": "Presentazione/Evento Unibas",
+    "data": "2026-09-14",
+    "ora": "18:00",
+    "luogo": "Unibas, Potenza",
+    "descrizione": "Incontro/evento con Giordano Gasperini"
+  },
+  {
+    "titolo": "Evento GD Aulla",
+    "data": "2026-09-18",
+    "ora": "18:00",
+    "luogo": "Sala Tobagi, Aulla (Massa Carrara)",
+    "descrizione": "Evento GD con Brando Benifei e Dario Nardella"
+  },
+  {
+    "titolo": "Evento Libera Castellammare di Stabia",
+    "data": "2026-09-20",
+    "ora": "18:00",
+    "luogo": "Piazza Giovanni XXIII, Castellammare di Stabia (Napoli)",
+    "descrizione": "Incontro/evento con abbozzo._"
+  },
+  {
+    "titolo": "Generazione Ventotene",
+    "data": "2026-09-26",
+    "ora": "18:00",
+    "luogo": "Ventotene",
+    "descrizione": "Incontro/evento con Giu Fossa, rossaperpendicolare e Virginia Libero"
+  },
+  {
+    "titolo": "Festa dell'Unità Pescara",
+    "data": "2026-09-27",
+    "ora": "16:00",
+    "luogo": "Piazza Santa Caterina da Siena, Pescara",
+    "descrizione": "Incontro/evento con Eleonora Evi"
+  },
+  {
+    "titolo": "Festival Digital Popolare",
+    "data": "2026-10-02",
+    "ora": "15:00",
+    "luogo": "Gallerie D'Italia, Torino",
+    "descrizione": "Incontro/evento con Raffa Giulians e Matteo Hallissey"
+  },
+  {
+    "titolo": "Festival Across University",
+    "data": "2026-10-08",
+    "ora": "18:00",
+    "luogo": "Padova",
+    "descrizione": "Festival Across University"
+  },
+  {
+    "titolo": "Incontro Università Bocconi",
+    "data": "2026-10-12",
+    "ora": "18:30",
+    "luogo": "Università Bocconi, Milano",
+    "descrizione": "Incontro presso l'Università Bocconi"
+  },
+  {
+    "titolo": "Festival Innesti - La rottura del patto generazionale",
+    "data": "2026-10-18",
+    "ora": "-",
+    "luogo": "Sermig, Torino",
+    "descrizione": "Festival Innesti | La rottura del patto generazionale"
   }
 ]

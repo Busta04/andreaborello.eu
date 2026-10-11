@@ -1,34 +1,82 @@
 [
   {
-    "testata": "La Repubblica",
-    "data": "2026-09-18",
-    "titolo": "«Servono politiche sul lavoro giovanile e casa accessibile»: l'intervista ad Andrea Borello",
-    "estratto": "Un'analisi approfondita sulle priorità economiche e sociali per le nuove generazioni, tra proposte di legge locali e interventi per calmierare gli affitti.",
-    "url": "https://www.repubblica.it",
-    "categoria": "Intervista"
-  },
-  {
-    "testata": "Corriere della Sera",
-    "data": "2026-07-04",
-    "titolo": "Transizione ecologica e trasporti pubblici: la proposta del PD sul territorio",
-    "estratto": "Borello illustra il piano straordinario per il potenziamento dei mezzi pubblici a emissioni zero e la gratuità per gli studenti.",
-    "url": "https://www.corriere.it",
+    "testata": "Repubblica",
+    "data": "2026-03-04",
+    "titolo": "Un programma per i giovani”, gli under 30 del Pd si muovono",
+    "estratto": "Tra coloro che hanno avvicinato la segretaria Schlein per proporre uno svecchiamento del partito c’era anche l’influencer Andrea Borello, classe 1999",
+    "url": "https://torino.repubblica.it/cronaca/2026/03/04/news/under_30_pd_giovani_andrea_borello-425198766/",
     "categoria": "Articolo"
   },
   {
-    "testata": "Il Fatto Quotidiano",
-    "data": "2026-04-12",
-    "titolo": "Sanità pubblica, sanità di tutti: la mobilitazione di piazza",
-    "estratto": "Oltre duemila persone al corteo per la difesa delle strutture sanitarie locali. Borello: «Non un euro in meno alla salute dei cittadini».",
-    "url": "https://www.ilfattoquotidiano.it",
-    "categoria": "Cronaca"
+    "testata": "Corriere della Sera",
+    "data": "2025-06-09",
+    "titolo": "La storia di Andrea Borello: «Ho smontato i miti su Mussolini con un video. In 24 ore mi hanno insultato in 600: ora denuncio tutti»",
+    "estratto": "raccoglie 13 pagine di nomi e profili responsabili delle offese e presentarsi in caserma per sporgere denuncia.",
+    "url": "https://torino.corriere.it/notizie/politica/25_giugno_09/la-storia-di-andrea-borello-ho-smontato-i-miti-su-mussolini-con-un-video-in-24-ore-mi-hanno-insultato-in-600-ora-denuncio-tutti-d76e8ae8-f0cf-4c72-81db-dcd0b8867xlk_amp.shtml",
+    "categoria": "Intervista"
   },
   {
     "testata": "La Stampa",
-    "data": "2025-11-20",
-    "titolo": "Riqualificazione urbana e periferie: il dibattito aperto con la cittadinanza",
-    "estratto": "Resoconto dell'assemblea pubblica tenutasi ieri sera. Focus sui fondi dedicati ai centri di aggregazione giovanile e alle aree verdi.",
-    "url": "https://www.lastampa.it",
-    "categoria": "Reportage"
+    "data": "2026-07-19",
+    "titolo": "Andrea Borello, influencer di centrosinistra: “L’alleanza progressista non ha una rete social forte”",
+    "estratto": "Il ventiseienne di Caselle Torinese: «Tik Tok paga 1 centesimo ogni mille visualizzazioni: io lo vivo come una forma di attivismo politico»",
+    "url": "https://www.lastampa.it/politica/2026/07/19/news/andrea_borello_influencer_di_centrosinistra_l_alleanza_progressista_non_ha_una_rete_social_forte-15693991/amp/",
+    "categoria": "Articolo"
+  },
+  {
+    "testata": "Politicare",
+    "data": "2026-03-30",
+    "titolo": "Lui è Andrea Borello",
+    "estratto": "Un'intervista a tutto campo ad Andrea Borello su attivismo digitale, ruolo dei partiti tradizionali, transizione ecologica e sfide della comunicazione politica sui social.",
+    "url": "https://www.politicare.it/lui-e-andrea-borello/",
+    "categoria": "Intervista"
+  },
+  {
+    "testata": "La Voce",
+    "data": "2025-03-26",
+    "titolo": "Rivoluzione PD a Caselle: Andrea Borello, 25 anni, prende il timone del Circolo",
+    "estratto": "E' il nuovo Segretario del Partito Democratico, portando con sé una visione fresca e dinamica per il futuro della città e del territorio",
+    "url": "https://www.giornalelavoce.it/news/attualita/577712/rivoluzione-pd-a-caselle-andrea-borello-25-anni-prende-il-timone-del-circolo.html",
+    "categoria": "Articolo"
+  },
+  {
+    "testata": "TorinoToday",
+    "data": "2025-06-09",
+    "titolo": "Minacce di morte e insulti ad Andrea Borello, segretario Pd di Caselle: Un assedio organizzato all'interno di gruppi fascisti",
+    "estratto": "Ho denunciato, ma il rischio di archiviazione c'è. Giusto che paghi il professore per il post contro la figlia di Meloni, ma devono essere puniti anche tutti gli altri",
+    "url": "https://www.torinotoday.it/politica/andrea-borello-segretario-pd-caselle-minacce-insulti-social.html",
+    "categoria": "Intervista"
+  },
+  {
+    "testata": "Croce Rossa Italiana",
+    "data": "2024-06-07",
+    "titolo": "«Andrea Borello, giovane CRI, tra i 5 finalisti italiani del Premio cittadino europeo 2021",
+    "estratto": "Intervista ad andrea borello suelle sue attiità in Croce rossa",
+    "url": "https://youtu.be/4XNZHwzxuW8",
+    "categoria": "Intervista"
+  },
+  {
+    "testata": "In Terris",
+    "data": "2021-10-31",
+    "titolo": "La storia di Andrea Borello, un giovane impegnato “scoperto” dall'Europa",
+    "estratto": "Intervista ad Andrea Borello, premiato come Cittadino Europeo del 2021 per il suo impegno nel volontariato durante la pandemia e l'attivismo per il clima.",
+    "url": "https://www.interris.it/la-voce-degli-ultimi/andrea-borello-europa/",
+    "categoria": "Intervista"
+  },
+  {
+    "testata": "La Dépêche",
+    "data": "2026-10-11",
+    "titolo": "Andrea Borello, 21 ans, influenceur politique sur Tik Tok",
+    "estratto": " Depuis un an, cet étudiant à Sciendes-po décrypte l'actualité politique mondiale sur Tik Tok et rassemble 100.000 followers",
+    "url": "https://www.ladepeche.fr/2020/11/29/andrea-borello-21-ans-influenceur-politique-sur-tik-tok-9227661.php",
+    "categoria": "Articolo"
+  },
+  {
+    "testata": "La Miniera",
+    "data": "2025-09-17",
+    "titolo": "CONFRONTO A. Borello (Nova Lectio) vs M. Colarossi (Forza Italia) : “MA BASTA COL FASCISMO!",
+    "estratto": "Dibattito sul tema del rischio fascismo",
+    "url": "https://youtu.be/rSwCWwZGPCU",
+    "categoria": "Confronto"
   }
 ]

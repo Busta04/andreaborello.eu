@@ -1,30 +1,105 @@
 [
   {
-    "anno": "1988",
-    "titolo": "Le radici e gli anni della formazione",
-    "testo": "Nato e cresciuto in una famiglia di lavoratori, Andrea sviluppa fin da giovanissimo una profonda sensibilità per i temi della giustizia sociale e dell'uguaglianza. Durante gli anni universitari in Scienze Politiche, partecipa attivamente ai movimenti studenteschi e al volontariato di quartiere.",
-    "immagine": "/bio1.JPG",
-    "alt": "Andrea Borello durante gli anni universitari"
+    "testo": "Ciao, sono Andrea! Sono nato e cresciuto in un piccolo comune nella provincia di Torino a fine 1999. Affondo le mie radici nella storia della mia famiglia: un mio nonno ha fatto la Resistenza e poi è diventato ispettore nella Polizia, mentre l’altro lavorava in FIAT.",
+    "immagini": [
+      {
+        "src": "/3.webp",
+        "alt": "Foto 3"
+      }
+    ]
   },
   {
-    "anno": "2012",
-    "titolo": "L'impegno nel territorio e l'associazionismo",
-    "testo": "Dopo la laurea, promuove diversi progetti di riqualificazione urbana e sostegno alle famiglie in difficoltà. La sua passione per la politica attiva lo porta a coordinare circoli locali, con un focus costante sui diritti dei lavoratori, sui servizi pubblici e sulla sostenibilità ambientale.",
-    "immagine": "/bio2.JPG",
-    "alt": "Andrea Borello ad un incontro di quartiere"
+    "testo": "Ho frequentato il Liceo Classico al Cavour di Torino, dove ho iniziato a muovere i miei primi passi in politica come rappresentante prima in Istituto e poi nella Consulta Provinciale. Sempre negli anni del Liceo mi sono avvicinato al centro-sinistra, iniziando a militare nei Giovani Democratici. Finita la maturità, mio padre mi ha spedito a lavorare come steward allo stadio.",
+    "immagini": [
+      {
+        "src": "/4.webp",
+        "alt": "Foto 4"
+      },
+      {
+        "src": "/5.webp",
+        "alt": "Foto 5"
+      }
+    ]
   },
   {
-    "anno": "2018",
-    "titolo": "L'ingresso nelle istituzioni locali",
-    "testo": "Eletto consigliere comunale, si distingue per le sue battaglie a favore del trasporto pubblico accessibile, del potenziamento degli asili nido e del contrasto alla precarietà giovanile. Lavora quotidianamente a stretto contatto con i cittadini e i sindacati del territorio.",
-    "immagine": "/bio3.JPG",
-    "alt": "Andrea Borello durante una seduta del consiglio comunale"
+    "testo": "Il 2019 è stato un anno pazzesco. Mentre frequentavo il corso di Laurea Triennale in Scienze Internazionali ho aperto con un amico il mio primo canale YouTube [link a video yt “destra e sinistra”] e ho iniziato a militare nei movimenti ambientalisti, fondando insieme ad alcuni amici il gruppo locale di Fridays For Future Torino. Il 15 marzo del 2019 abbiamo portato in piazza 30mila persone.",
+    "immagini": [
+      {
+        "src": "/6.webp",
+        "alt": "Foto 6"
+      },
+      {
+        "src": "/7.webp",
+        "alt": "Foto 7"
+      },
+      {
+        "src": "/8.webp",
+        "alt": "Foto 8"
+      },
+      {
+        "src": "/9.webp",
+        "alt": "Foto 9"
+      }
+    ]
   },
   {
-    "anno": "Oggi",
-    "titolo": "Una visione per il futuro",
-    "testo": "Oggi Andrea Borello continua il suo impegno con il Partito Democratico, portando avanti una proposta politica fondata sulla transizione ecologica equa, sulla difesa della sanità pubblica e su un'economia che metta al centro le persone e non i profitti.",
-    "immagine": "/bio4.JPG",
-    "alt": "Andrea Borello ad una manifestazione pubblica"
+    "testo": "Sempre nel 2019 ho iniziato un percorso di doppia laurea con Sciences Po Bordeaux. La mia esperienza all’estero è stata bruscamente interrotta del Covid-19. A Bordeaux io ero diventato volontario della Croce Rossa Francese, per cui ho scelto di non tornare e proseguire lì la mia attività di soccorritore. Tornato in Italia sono entrato nella Croce Rossa Italiana. Per questa duplice esperienza il Parlamento Europeo mi ha assegnato il premio Cittadino Europeo 2021.",
+    "immagini": [
+      {
+        "src": "/10.webp",
+        "alt": "Foto 10"
+      },
+      {
+        "src": "/11.webp",
+        "alt": "Foto 11"
+      }
+    ]
+  },
+  {
+    "testo": "Durante la pandemia ho aperto una pagina su Tik-tok in cui raccontare la politica ai miei coetanei. È stato un successo inaspettato. Da lì ho aperto la Partita IVA e ho iniziato a lavorare come divulgatore per clienti come Mondadori, Feltrinelli e Unipol. Nel 2022 mi sono candidato alle elezioni comunali della mia città, dove oggi sono Consigliere Comunale. Dopo un trimestre in Argentina grazie ad una borsa di studio, nel 2023 ho conseguito la Laurea Magistrale in International Cooperation e ho iniziato a lavorare anche come Digital Campaigner, seguendo come esperto di comunicazione campagne ambientaliste e politiche.",
+    "immagini": [
+      {
+        "src": "/12.webp",
+        "alt": "Foto 12"
+      }
+    ]
+  },
+  {
+    "testo": "Nel 2024 ho conseguito un master di ricerca presso il Collegio Carlo Alberto e poi la Laurea Magistrale francese in Governance della Transizione Ecologica. A giugno dello stesso anno mi sono candidato alle elezioni regionali. Ho perso – come prevedibile – ma ho imparato tantissimo. Poco dopo sono diventato Segretario del circolo PD della mia città.",
+    "immagini": [
+      {
+        "src": "/13.webp",
+        "alt": "Foto 13"
+      },
+      {
+        "src": "/14.webp",
+        "alt": "Foto 14"
+      },
+      {
+        "src": "/15.webp",
+        "alt": "Foto 15"
+      },
+      {
+        "src": "/16.webp",
+        "alt": "Foto 16"
+      }
+    ]
+  },
+  {
+    "testo": "Intanto ho portato avanti il volontariato e l’attivismo, nelle piazze come sui social, dove oggi siamo una community di quasi 500mila utenti! Fuori dalla politica sono una persona normale, vedo gli amici, ho una fidanzata, preferisco il Campari all’Aperol, voglio la Palestina libera, amo andare in montagna – che sia inverno o estate – e sono cintura nera di judo.",
+    "immagini": [
+      {
+        "src": "/17.webp",
+        "alt": "Foto 17"
+      },
+      {
+        "src": "/18.webp",
+        "alt": "Foto 18"
+      },
+      {
+        "src": "/19.webp",
+        "alt": "Foto 19"
+      }
+    ]
   }
 ]

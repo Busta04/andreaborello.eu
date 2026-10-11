@@ -17,11 +17,17 @@ import tappeBiografia from '../data/biografia.json';
       {tappeBiografia.map((tappa, index) => (
         <article class={`bio-row ${index % 2 !== 0 ? 'reverse' : ''}`}>
           <div class="bio-image-col">
-            <img src={`${import.meta.env.BASE_URL}${tappa.immagine}`} alt={tappa.alt} class="bio-image" />
+            <div class="bio-gallery">
+              {tappa.immagini.map((img) => (
+                <img 
+                  src={`${import.meta.env.BASE_URL}${img.src}`} 
+                  alt={img.alt} 
+                  class="bio-image" 
+                />
+              ))}
+            </div>
           </div>
           <div class="bio-text-col">
-            <span class="bio-year">{tappa.anno}</span>
-            <h2>{tappa.titolo}</h2>
             <p>{tappa.testo}</p>
           </div>
         </article>
@@ -77,19 +83,30 @@ import tappeBiografia from '../data/biografia.json';
     gap: 3rem;
   }
 
-  /* Inverte la colonna per i paragrafi dispari (Immagine a destra) */
+  /* Inverte la colonna per i paragrafi dispari */
   .bio-row.reverse {
     flex-direction: row-reverse;
   }
 
-  /* Colonna Immagine */
+  /* Colonna Immagine / Galleria */
   .bio-image-col {
     flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .bio-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    width: 100%;
+    max-width: 360px; /* Evita che un'unica foto si allarghi troppo */
   }
 
   .bio-image {
     width: 100%;
-    height: 320px;
+    aspect-ratio: 1 / 1; /* Mantiene la foto quadrata */
     object-fit: cover;
     border-radius: 12px;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -101,29 +118,11 @@ import tappeBiografia from '../data/biografia.json';
     flex: 1;
   }
 
-  .bio-year {
-    display: inline-block;
-    background-color: var(--pd-red);
-    color: white;
-    font-weight: 800;
-    font-size: 0.9rem;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    margin-bottom: 0.8rem;
-    letter-spacing: 0.5px;
-  }
-
-  .bio-text-col h2 {
-    font-size: 1.6rem;
-    color: #111827;
-    margin-bottom: 1rem;
-    line-height: 1.3;
-  }
-
   .bio-text-col p {
     font-size: 1.05rem;
     color: #4b5563;
     line-height: 1.7;
+    margin: 0;
   }
 
   /* Responsive: su schermi piccoli (smartphone) diventa tutto verticale */
@@ -134,8 +133,8 @@ import tappeBiografia from '../data/biografia.json';
       gap: 1.5rem;
     }
 
-    .bio-image {
-      height: 240px;
+    .bio-gallery {
+      max-width: 100%;
     }
 
     .bio-timeline {
