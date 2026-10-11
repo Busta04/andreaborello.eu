@@ -1,0 +1,317 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const base = import.meta.env.BASE_URL;
+const destinatario = 'andrea.borello@gmail.com';
+---
+
+<Layout title="Contattami">
+
+  <!-- ========== INTESTAZIONE ========== -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <span class="section-label">CONTATTAMI</span>
+      <h1>Scrivimi</h1>
+      <p>
+        Vuoi fare un evento assieme, o semplicemente darmi una mano? Scrivimi qui sotto via email! 
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== CONTENUTO ========== -->
+  <section class="contact-page">
+    <div class="contact-grid">
+
+      <!-- Colonna info -->
+      <aside class="contact-info">
+        <h2>Contatto diretto</h2>
+
+        <p class="contact-email">
+          <strong>Email</strong><br />
+          <a href={`mailto:${destinatario}`}>{destinatario}</a>
+        </p>
+
+        <div class="quick-buttons">
+          <a
+            class="btn btn-primary"
+            href={`https://mail.google.com/mail/?view=cm&fs=1&to=${destinatario}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Scrivi con Gmail
+          </a>
+          <a class="btn btn-outline" href={`mailto:${destinatario}`}>
+            Altro programma di posta
+          </a>
+        </div>
+      </aside>
+
+      <!-- Colonna form -->
+      <div class="contact-card">
+        <h2>Invia un messaggio</h2>
+
+        <form id="contact-form" class="contact-form">
+          <label>
+            Nome
+            <input type="text" name="nome" required />
+          </label>
+
+          <label>
+            Email
+            <input type="email" name="email" required />
+          </label>
+
+          <label>
+            Oggetto
+            <input type="text" name="oggetto" placeholder="Di cosa vuoi parlarmi?" />
+          </label>
+
+          <label>
+            Messaggio
+            <textarea name="messaggio" rows="7" required></textarea>
+          </label>
+
+          <button type="submit" class="btn btn-primary">Invia messaggio</button>
+
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  const form = document.getElementById('contact-form');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const dati = new FormData(form as HTMLFormElement);
+      const nome = dati.get('nome');
+      const email = dati.get('email');
+      const oggettoUtente = String(dati.get('oggetto') || '').trim();
+      const messaggio = dati.get('messaggio');
+
+      const destinatario = 'andrea.borello@gmail.com';
+      const oggetto = encodeURIComponent(
+        oggettoUtente || `Messaggio dal sito da ${nome}`
+      );
+      const corpo = encodeURIComponent(
+        `${messaggio}\n\n---\nNome: ${nome}\nEmail: ${email}`
+      );
+
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+      if (isMobile) {
+        // Apre l'app di posta predefinita
+        window.location.href = `mailto:${destinatario}?subject=${oggetto}&body=${corpo}`;
+      } else {
+        // Apre Gmail web in una nuova scheda
+        window.open(
+          `https://mail.google.com/mail/?view=cm&fs=1&to=${destinatario}&su=${oggetto}&body=${corpo}`,
+          '_blank'
+        );
+      }
+    });
+  }
+</script>
+
+<style>
+
+  /* ========== INTESTAZIONE ========== */
+
+  .page-hero {
+    background: linear-gradient(
+      90deg,
+      rgba(170, 0, 0, 0.95) 0%,
+      rgba(211, 47, 47, 0.9) 100%
+    );
+    color: white;
+    padding: 4.5rem 1.5rem;
+  }
+
+  .page-hero-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .page-hero .section-label {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+  }
+
+  .page-hero p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    max-width: 560px;
+  }
+
+  .section-label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 0.7rem;
+  }
+
+
+  /* ========== LAYOUT ========== */
+
+  .contact-page {
+    background: #f3f4f6;
+    padding: 4rem 1.5rem 5rem;
+  }
+
+  .contact-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+
+  /* ========== INFO ========== */
+
+  .contact-info h2,
+  .contact-card h2 {
+    font-size: 1.6rem;
+    color: #111827;
+    margin-bottom: 1rem;
+  }
+
+  .contact-info p {
+    color: #4b5563;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-email a {
+    color: var(--pd-red);
+    font-weight: 700;
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .contact-email a:hover { text-decoration: underline; }
+
+  .quick-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: flex-start;
+  }
+
+
+  /* ========== FORM ========== */
+
+  .contact-card {
+    background: white;
+    border-radius: 4px;
+    border-top: 5px solid var(--pd-red);
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .contact-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-weight: 600;
+    color: #111827;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    padding: 0.8rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font: inherit;
+    background: white;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: 2px solid var(--pd-red);
+    border-color: transparent;
+  }
+
+  .contact-form .btn {
+    align-self: flex-start;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .form-note {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #6b7280;
+    line-height: 1.5;
+  }
+
+
+  /* ========== BOTTONI ========== */
+
+  .btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .btn:hover { transform: translateY(-2px); }
+
+  .btn-primary {
+    background-color: var(--pd-red);
+    color: white;
+  }
+
+  .btn-primary:hover { background-color: var(--pd-red-dark); }
+
+  .btn-outline {
+    border: 2px solid var(--pd-red);
+    color: var(--pd-red);
+    background: transparent;
+  }
+
+  .btn-outline:hover {
+    background: var(--pd-red);
+    color: white;
+  }
+
+
+  /* ========== MOBILE ========== */
+
+  @media (max-width: 800px) {
+    .page-hero { padding: 3rem 1.5rem; }
+
+    .contact-page { padding: 3rem 1.5rem 4rem; }
+
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .contact-card { padding: 1.5rem; }
+  }
+
+</style>

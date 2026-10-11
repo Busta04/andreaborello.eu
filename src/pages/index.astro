@@ -241,37 +241,76 @@ const formattaData = (d: string | number | Date) =>
 
   <!-- ========== CONTATTAMI ========== -->
   <section class="contact-section" id="contatti">
-    <div class="contact-container">
+  <div class="contact-container">
 
-      <span class="section-label section-label-center">SCRIVIMI</span>
-      <h2 class="section-title">Contattami</h2>
+    <span class="section-label section-label-center">SCRIVIMI</span>
+    <h2 class="section-title">Contattami</h2>
 
-      <!-- Sostituisci l'action con il tuo endpoint Formspree (https://formspree.io) -->
-      <form
-        class="contact-form"
-        action="https://formspree.io/f/IL_TUO_ID"
-        method="POST"
-      >
-        <label>
-          Nome
-          <input type="text" name="nome" required />
-        </label>
+    <form
+      id="contact-form"
+      class="contact-form"
+      action="https://formspree.io/f/IL_TUO_ID"
+      method="POST"
+    >
+      <label>
+        Nome
+        <input type="text" name="nome" required />
+      </label>
 
-        <label>
-          Email
-          <input type="email" name="email" required />
-        </label>
+      <label>
+        Email
+        <input type="email" name="email" required />
+      </label>
 
-        <label>
-          Messaggio
-          <textarea name="messaggio" rows="6" required></textarea>
-        </label>
+      <label>
+        Messaggio
+        <textarea name="messaggio" rows="6" required></textarea>
+      </label>
 
-        <button type="submit" class="btn btn-primary">Invia messaggio</button>
-      </form>
+      <!-- Oggetto dell'email che ricevi -->
+      <input type="hidden" name="_subject" value="Nuovo messaggio dal sito" />
 
-    </div>
-  </section>
+      <!-- Anti-spam: i bot lo compilano, le persone no -->
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+      <button type="submit" class="btn btn-primary">Invia messaggio</button>
+
+      <p id="form-status" class="form-status" role="status"></p>
+    </form>
+
+  </div>
+  
+</section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const dati = new FormData(form);
+    const nome = dati.get('nome');
+    const email = dati.get('email');
+    const messaggio = dati.get('messaggio');
+
+    const destinatario = 'andrea.borello@gmail.com';
+    const oggetto = encodeURIComponent(`Messaggio dal sito da ${nome}`);
+    const corpo = encodeURIComponent(`${messaggio}\n\n---\nNome: ${nome}\nEmail: ${email}`);
+
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      // Apre l'app di posta predefinita (Gmail, se è quella impostata)
+      window.location.href = `mailto:${destinatario}?subject=${oggetto}&body=${corpo}`;
+    } else {
+      // Apre Gmail web in una nuova scheda
+      window.open(
+        `https://mail.google.com/mail/?view=cm&fs=1&to=${destinatario}&su=${oggetto}&body=${corpo}`,
+        '_blank'
+      );
+    }
+  });
+</script>
 
 </Layout>
 
