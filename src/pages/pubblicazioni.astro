@@ -1,6 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import libri from '../data/pubblicazioni.json';
+
+// Interfaccia TypeScript basata esattamente sul tuo JSON
+interface LinkAcquisto {
+  nome: string;
+  url: string;
+}
+
+interface Libro {
+  titolo: string;
+  editore: string;
+  anno: string;
+  isbn: string;
+  pagine: string;
+  copertina: string;
+  descrizione: string;
+  linkAcquisto: LinkAcquisto[];
+}
+
+const listaLibri = libri as Libro[];
 ---
 
 <Layout title="Pubblicazioni">
@@ -14,11 +33,15 @@ import libri from '../data/pubblicazioni.json';
 
   <div class="container page-content">
     <div class="books-wrapper">
-      {libri.map((libro) => (
+      {listaLibri.map((libro) => (
         <article class="book-card">
           <!-- COVER DEL LIBRO -->
           <div class="book-cover-col">
-            <img src={`${import.meta.env.BASE_URL}${libro.copertina}`} alt={`Copertina di ${libro.titolo}`} class="book-cover" />
+            <img 
+              src={`${import.meta.env.BASE_URL}${libro.copertina}`} 
+              alt={`Copertina di ${libro.titolo}`} 
+              class="book-cover" 
+            />
           </div>
 
           <!-- DETTAGLI E CONTENUTO -->
@@ -26,10 +49,7 @@ import libri from '../data/pubblicazioni.json';
             <div class="book-header">
               <span class="book-publisher">{libro.editore} ({libro.anno})</span>
               <h2>{libro.titolo}</h2>
-              <p class="book-subtitle">{libro.sottotitolo}</p>
             </div>
-
-            <blockquote class="book-quote">{libro.citazione}</blockquote>
 
             <p class="book-description">{libro.descrizione}</p>
 
@@ -39,21 +59,29 @@ import libri from '../data/pubblicazioni.json';
             </div>
 
             <!-- SEZIONE ACQUISTO -->
-            <div class="buy-section">
-              <h3>Acquista online:</h3>
-              <div class="buy-links">
-                {libro.linkAcquisto.map((link) => (
-                  <a 
-                    href={link.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    class="buy-btn"
-                  >
-                    🛒 {link.nome}
-                  </a>
-                ))}
+            {libro.linkAcquisto && libro.linkAcquisto.length > 0 && (
+              <div class="buy-section">
+                <h3>Acquista online:</h3>
+                <div class="buy-links">
+                  {libro.linkAcquisto.map((link) => (
+                    link.url && link.url.trim() !== '' ? (
+                      <a 
+                        href={link.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        class="buy-btn"
+                      >
+                        🛒 {link.nome}
+                      </a>
+                    ) : (
+                      <span class="buy-btn disabled">
+                        🛒 {link.nome}
+                      </span>
+                    )
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </article>
       ))}
@@ -138,30 +166,16 @@ import libri from '../data/pubblicazioni.json';
     text-transform: uppercase;
     color: var(--pd-red);
     letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 0.3rem;
   }
 
   .book-info-col h2 {
     font-size: 2rem;
     color: #111827;
-    margin: 0.2rem 0;
-  }
-
-  .book-subtitle {
-    font-size: 1.1rem;
-    color: #4b5563;
-    font-weight: 500;
-    margin-bottom: 1.2rem;
-  }
-
-  .book-quote {
-    background-color: #f9fafb;
-    border-left: 4px solid var(--pd-red);
-    padding: 0.8rem 1.2rem;
-    font-style: italic;
-    color: #374151;
-    margin-bottom: 1.5rem;
-    border-radius: 0 6px 6px 0;
-    font-size: 0.95rem;
+    margin: 0.2rem 0 1rem 0;
+    text-transform: none; /* Rispetta fedelmente il testo in MAIUSCOLO del JSON */
+    line-height: 1.25;
   }
 
   .book-description {
@@ -207,11 +221,18 @@ import libri from '../data/pubblicazioni.json';
     transition: all 0.2s ease;
   }
 
-  .buy-btn:hover {
+  .buy-btn:hover:not(.disabled) {
     background-color: var(--pd-red);
     color: white;
     border-color: var(--pd-red);
     transform: translateY(-2px);
+  }
+
+  .buy-btn.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: #e5e7eb;
+    color: #6b7280;
   }
 
   /* Responsive per Smartphone */

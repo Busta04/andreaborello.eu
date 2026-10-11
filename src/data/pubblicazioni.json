@@ -1,19 +1,14 @@
 [
   {
-    "titolo": "Un'Altra Strada",
-    "sottotitolo": "Proposte per un'Italia più equa, sostenibile e solidale",
-    "editore": "Edizioni Laterza",
-    "anno": "2025",
-    "isbn": "978-88-000-0000-0",
-    "pagine": "240",
-    "copertina": "/copertina-libro.jpg",
-    "descrizione": "Un viaggio attraverso le disuguaglianze sociali ed economiche del nostro Paese e una mappa dettagliata per superarle. In questo saggio, Andrea Borello intreccia testimonianze dal territorio, dati economici e proposte concrete per riformare il mercato del lavoro, difendere la sanità pubblica e guidare una transizione ecologica a misura di cittadino.",
-    "citazione": "«La politica non è l'arte del possibile, ma l'impegno costante nel rendere possibile ciò che è giusto.»",
+    "titolo": "10 STORIE VERE CHE NON DOVREBBERO ESSERLO",
+    "editore": "Castelvecchi",
+    "anno": "2027",
+    "isbn": "99999999",
+    "pagine": "1000000",
+    "copertina": "/20.webp",
+    "descrizione": "Non né un saggio, né l’ennesimo libro di un influencer: è il racconto di una generazione. Attraverso 10 storie vere di gente che ha incontrato nel cammino di studio, lavoro e attivismo, l’autore racconta i nuovi problemi e le difficoltà di una generazione, quella dei giovani, troppo spesso vista come svogliata e desiderosa di avere tutto subito, proponendo soluzione concrete che la politica spesso non ha il coraggio di attuare. Dalla precarietà del lavoro – quando lo si trova – alla difficoltà di accesso al credito, dall’educazione sessuale alla salute mentale, fino alla completa irrilevanza politica. La speranza è uscire dalla bolla presente sui social e arrivare a chi oggi questa generazione non la comprende e non la legittima, non per fargli cambiare idea, ma per mostrare che esiste un punto di vista diverso. Il Referendum giustizia del 2026 ha cambiato qualcosa, ma sarà abbastanza per non rassegnarsi?",
     "linkAcquisto": [
-      { "nome": "Amazon", "url": "https://www.amazon.it" },
-      { "nome": "IBS", "url": "https://www.ibs.it" },
-      { "nome": "La Feltrinelli", "url": "https://www.lafeltrinelli.it" },
-      { "nome": "Mondadori Store", "url": "https://www.mondadoristore.it" }
+      { "nome": "Preordine", "url": "" }
     ]
   }
 ]

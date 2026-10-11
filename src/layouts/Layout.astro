@@ -4,6 +4,15 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+// Array social aggiornato con i link reali
+const socialLinks = [
+  { name: 'Facebook', url: 'https://www.facebook.com/andrea.borello.104', icon: 'icons8-facebook-24.webp' },
+  { name: 'Instagram', url: 'https://www.instagram.com/andreaborello_', icon: 'icons8-instagram-24.webp' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/andrea-borello', icon: 'icons8-linkedin-24.webp' },
+  { name: 'TikTok', url: 'https://www.tiktok.com/@andreaborello_', icon: 'icons8-tiktok-24.webp' },
+  { name: 'YouTube', url: 'https://www.youtube.com/@andreaborello_', icon: 'icons8-youtube-24.webp' }
+];
 ---
 
 <!doctype html>
@@ -11,8 +20,8 @@ const { title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title} - Andrea Borello</title>
+    <link rel="icon" type="image/webp" href={`${import.meta.env.BASE_URL}/icon.webp`} />
+    <title>{title} | Andrea Borello</title>
   </head>
 
   <body>
@@ -40,13 +49,22 @@ const { title } = Astro.props;
 
         <!-- MENU -->
         <nav class="nav-links" id="nav-menu">
-          <a href={`${import.meta.env.BASE_URL}/biografia`}>Biografia</a>
-          <a href={`${import.meta.env.BASE_URL}/social`}>Social</a>
-          <a href={`${import.meta.env.BASE_URL}/pubblicazioni`}>Pubblicazioni</a>
-          <a href={`${import.meta.env.BASE_URL}/sostienici`}>Sostienici</a>
-          <a href={`${import.meta.env.BASE_URL}/eventi`}>Eventi</a>
-          <a href={`${import.meta.env.BASE_URL}/parlano-di-noi`}>Parlano di noi</a>
-          <a href={`${import.meta.env.BASE_URL}/contattami`}>Contattami</a>
+          <a href={`${import.meta.env.BASE_URL}/biografia`}>CHI SONO</a>
+          <a href={`${import.meta.env.BASE_URL}/pubblicazioni`}>PUBBLICAZIONI</a>
+          <a href={`${import.meta.env.BASE_URL}/le-mie-battaglie`}>LE MIE BATTAGLIE</a>
+          <a href={`${import.meta.env.BASE_URL}/eventi`}>PROSSIMI EVENTI</a>
+          <a href={`${import.meta.env.BASE_URL}/parlano-di-noi`}>PARLANO DI NOI</a>
+          <a href={`${import.meta.env.BASE_URL}/sostienici`}>SOSTIENICI</a>
+          <a href={`${import.meta.env.BASE_URL}/contattami`}>CONTATTAMI</a>
+
+          <!-- ICONE SOCIAL NAVBAR -->
+          <div class="nav-socials">
+            {socialLinks.map((social) => (
+              <a href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.name}>
+                <img src={`${import.meta.env.BASE_URL}/${social.icon}`} alt={social.name} width="24" height="24" />
+              </a>
+            ))}
+          </div>
         </nav>
 
       </div>
@@ -60,10 +78,15 @@ const { title } = Astro.props;
     <!-- PIÈ DI PAGINA -->
     <footer class="footer">
       <div class="footer-container">
-        <p>&copy; {new Date().getFullYear()} Andrea Borello - Partito Democratico</p>
-        <p class="credits">
-          Sito creato da <strong>Pietro Borello</strong> | Creato nel 2026
-        </p>
+        <!-- ICONE SOCIAL FOOTER -->
+        <div class="footer-socials">
+          {socialLinks.map((social) => (
+            <a href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.name}>
+              <img src={`${import.meta.env.BASE_URL}/${social.icon}`} alt={social.name} width="24" height="24" class="footer-social-icon" />
+            </a>
+          ))}
+        </div>
+        <p>&copy; 2026</p>
       </div>
     </footer>
 
@@ -134,7 +157,7 @@ const { title } = Astro.props;
   }
 
   .nav-container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 1rem;
     display: flex;
@@ -164,20 +187,42 @@ const { title } = Astro.props;
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
+    gap: 1rem;
   }
 
   .nav-links a {
     text-decoration: none;
     color: var(--text-color);
-    font-weight: 500;
-    font-size: 0.95rem;
+    font-weight: 600;
+    font-size: 0.85rem;
     transition: color 0.2s ease;
     white-space: nowrap;
   }
 
   .nav-links a:hover {
     color: var(--pd-red);
+  }
+
+  /* ICONE SOCIAL NAVBAR */
+  .nav-socials {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 0.5rem;
+    border-left: 1px solid #e5e7eb;
+    padding-left: 0.75rem;
+  }
+
+  .nav-socials a {
+    display: flex;
+    align-items: center;
+    opacity: 0.85;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .nav-socials a:hover {
+    opacity: 1;
+    transform: translateY(-1px);
   }
 
   /* =========================
@@ -212,7 +257,7 @@ const { title } = Astro.props;
      MOBILE
      ========================= */
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
 
     .nav-container {
       position: relative;
@@ -244,16 +289,16 @@ const { title } = Astro.props;
     .nav-links a {
       padding: 0.9rem 0.5rem;
       border-top: 1px solid #e5e7eb;
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
 
-    .nav-links a:last-child {
-      border-bottom: none;
-    }
-
-    .nav-links a:hover {
-      color: var(--pd-red);
-      background-color: #f9fafb;
+    .nav-socials {
+      border-left: none;
+      border-top: 1px solid #e5e7eb;
+      padding: 1rem 0.5rem;
+      margin-left: 0;
+      justify-content: center;
+      gap: 1.2rem;
     }
   }
 
@@ -274,12 +319,33 @@ const { title } = Astro.props;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 1rem;
   }
 
-  .credits {
-    font-size: 0.85rem;
-    color: #9ca3af;
+  .footer-socials {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .footer-socials a {
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .footer-socials a:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Rende le icone chiare per lo sfondo scuro del footer se necessario */
+  .footer-social-icon {
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+  }
+
+  .footer-socials a:hover .footer-social-icon {
+    opacity: 1;
   }
 </style>
-```

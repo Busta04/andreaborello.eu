@@ -2,8 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import tuttiEventi from '../data/eventi.json';
 import libri from '../data/pubblicazioni.json';
+import articoli from '../data/stampa.json';
 
-// Ottieni la data di oggi nel formato YYYY-MM-DD
+const base = import.meta.env.BASE_URL;
+
+// Data di oggi (YYYY-MM-DD)
 const oggi = new Date().toISOString().split('T')[0];
 
 // Prossimi 3 eventi
@@ -12,95 +15,107 @@ const prossimiEventi = tuttiEventi
   .sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime())
   .slice(0, 3);
 
-// Primo libro disponibile
+// Libro in evidenza
 const libro = libri[0];
+
+// Mostra solo i valori reali (ignora "Nan" / vuoti)
+const valido = (v: string) => v && String(v).toLowerCase() !== 'nan';
+
+// Link preordine: se l'URL è vuoto, rimanda alla pagina pubblicazioni
+const linkPreordine = libro?.linkAcquisto?.[0]?.url || `${base}/pubblicazioni`;
+const preordineEsterno = Boolean(libro?.linkAcquisto?.[0]?.url);
+
+// Le mie battaglie
+const battaglie = [
+  {
+    titolo: 'Clima',
+    foto: '/21.webp',
+    testo:
+      'Siamo in una crisi climatica. Dobbiamo invertire la rotta: diminuire il nostro impatto e adattarci al più presto agli effetti dell’aumento delle temperature. È dai tempi delle piazze di Fridays For Future che chiediamo giustizia climatica, cioè riduzione delle emissioni e contemporaneamente riduzione delle diseguaglianze. Fino ad oggi sembra che nessuno ci abbia ascoltato e molte iniziative trasudano greenwashing.',
+  },
+  {
+    titolo: 'Giovani',
+    foto: '/0.webp',
+    testo:
+      'Noi giovani siamo una minoranza, sottopagata nel mondo del lavoro, impossibilitata a raggiungere l’autonomia senza l’aiuto dei nostri genitori, con un futuro incerto su cui non riesce nemmeno a far valere la propria opinione, a maggior ragione considerando che siamo ulteriormente sottorappresentati nelle istituzioni. Eppure, non siamo il futuro: siamo il presente! Abbiamo diritto ad avere voce in capitolo, ma la politica tradizionale ci ha abbandonati e molti di noi si sentono lontani e disillusi. Riprendiamocela!',
+  },
+  {
+    titolo: 'Europa',
+    foto: '/23.webp',
+    testo:
+      'Mi sento ugualmente torinese, italiano ed europeo. Unirci a livello europeo valorizzando le nostre differenze locali è l’unica possibilità per essere rilevanti a livello internazionale e promuovere i nostri valori. Credo in un’Unione Europea che abbia una politica fiscale comune, un esercito comune, una politica estera comune e soprattutto che nel tempo evolva fino a diventare un’Europa federale.',
+  },
+];
+
+// Primi 3 articoli "Parlano di noi"
+const primiArticoli = articoli.slice(0, 3);
+
+const formattaData = (d: string | number | Date) =>
+  new Date(d).toLocaleDateString('it-IT', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
 ---
 
 <Layout title="Home">
 
-  <!-- =========================
-       HERO
-       ========================= -->
+  <!-- ========== HERO ========== -->
   <section class="hero">
-
     <img
-      src={`${import.meta.env.BASE_URL}/foto-andrea.JPG`}
+      src={`${base}/2.webp`}
       alt="Andrea Borello"
       class="hero-background"
     />
-
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
-      <img
-        src={`${import.meta.env.BASE_URL}/logo-pd.png`}
-        alt="Partito Democratico"
-        class="pd-logo"
-      />
-
       <h1>Andrea Borello</h1>
-
       <p class="hero-subtitle">
         Costruiamo insieme un futuro più equo,
         sostenibile e vicino alle persone.
       </p>
     </div>
-
   </section>
 
 
-  <!-- =========================
-       BIOGRAFIA
-       ========================= -->
+  <!-- ========== CHI SONO ========== -->
   <section class="bio-section">
     <div class="bio-container">
+      <span class="section-label">CHI SONO</span>
+      <h2>Ciao, sono Andrea!</h2>
 
-      <div class="bio-content">
-        <span class="section-label">CHI SONO</span>
+      <p>
+        Sono nato e cresciuto in un piccolo comune nella provincia di Torino
+        a fine 1999. Affondo le mie radici nella storia della mia famiglia:
+        un mio nonno ha fatto la Resistenza e poi è diventato ispettore nella
+        Polizia, mentre l’altro lavorava in FIAT.
+      </p>
+      <p>
+        Ho frequentato il Liceo Classico al Cavour di Torino, dove ho iniziato
+        a muovere i miei primi passi in politica come rappresentante prima in
+        Istituto e poi nella Consulta Provinciale. Sempre negli anni del Liceo
+        mi sono avvicinato al centro-sinistra, iniziando a militare nei Giovani
+        Democratici. Finita la maturità, mio padre mi ha spedito a lavorare
+        come steward allo stadio.
+      </p>
 
-        <h2>Andrea Borello</h2>
-
-        <p>
-          Una breve presentazione di Andrea Borello, del suo percorso
-          personale e politico e dell'impegno quotidiano al servizio
-          della comunità.
-        </p>
-
-        <p>
-          Scopri la sua storia, le esperienze che ne hanno segnato
-          il percorso e le idee che guidano il suo impegno.
-        </p>
-
-        <a
-          href={`${import.meta.env.BASE_URL}/biografia`}
-          class="btn btn-primary"
-        >
-          Scopri la biografia →
-        </a>
-      </div>
-
-      <div class="bio-image-wrapper">
-        <img
-          src={`${import.meta.env.BASE_URL}/foto-andrea.JPG`}
-          alt="Andrea Borello"
-          class="bio-image"
-        />
-      </div>
-
+      <a href={`${base}/biografia`} class="btn btn-primary">
+        Scopri di più →
+      </a>
     </div>
   </section>
 
 
-  <!-- =========================
-       LIBRO
-       ========================= -->
+  <!-- ========== PUBBLICAZIONE ========== -->
   {libro && (
     <section class="book-section">
       <div class="book-container">
 
         <div class="book-image-wrapper">
+          <div class="book-badge">📣 In arrivo</div>
           <img
-            src={`${import.meta.env.BASE_URL}${libro.copertina}`}
+            src={`${base}${libro.copertina}`}
             alt={`Copertina di ${libro.titolo}`}
             class="book-cover"
           />
@@ -111,28 +126,22 @@ const libro = libri[0];
 
           <h2>{libro.titolo}</h2>
 
-          {libro.sottotitolo && (
-            <p class="book-subtitle">
-              {libro.sottotitolo}
-            </p>
-          )}
-
           <div class="book-meta">
-            {libro.editore && <span>{libro.editore}</span>}
-            {libro.anno && <span>{libro.anno}</span>}
+            {valido(libro.editore) && <span>{libro.editore}</span>}
+            {valido(libro.anno) && <span>{libro.anno}</span>}
           </div>
 
-          {libro.descrizione && (
-            <p class="book-description">
-              {libro.descrizione}
-            </p>
+          {valido(libro.descrizione) && (
+            <p class="book-description">{libro.descrizione}</p>
           )}
 
           <a
-            href={`${import.meta.env.BASE_URL}/pubblicazioni`}
+            href={linkPreordine}
             class="btn btn-primary"
+            target={preordineEsterno ? '_blank' : undefined}
+            rel={preordineEsterno ? 'noopener noreferrer' : undefined}
           >
-            Scopri il libro →
+            Preordina il libro →
           </a>
         </div>
 
@@ -141,53 +150,125 @@ const libro = libri[0];
   )}
 
 
-  <!-- =========================
-       PROSSIMI EVENTI
-       ========================= -->
+  <!-- ========== LE MIE BATTAGLIE ========== -->
+  <section class="battles-section">
+    <div class="page-container">
+      <span class="section-label section-label-center">COSA MI STA A CUORE</span>
+      <h2 class="section-title">Le mie battaglie</h2>
+
+      <div class="battles-grid">
+        {battaglie.map((b) => (
+          <article class="battle-card">
+            <h3>{b.titolo}</h3>
+            <img src={`${base}${b.foto}`} alt={b.titolo} class="battle-image" />
+            <p>{b.testo}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== PROSSIMI EVENTI ========== -->
   <section class="events-section">
     <div class="page-container">
 
-      <span class="section-label section-label-center">
-        VIENI A CONOSCERMI
-      </span>
-
+      <span class="section-label section-label-center">VIENI A CONOSCERMI</span>
       <h2 class="section-title">Prossimi Eventi</h2>
 
       {prossimiEventi.length === 0 ? (
-        <p class="no-data">
-          Nessun evento in programma al momento.
-        </p>
+        <p class="no-data">Nessun evento in programma al momento.</p>
       ) : (
         <div class="events-list">
-
           {prossimiEventi.map((evento) => (
             <article class="event-card">
-
               <h3>{evento.titolo}</h3>
-
               <div class="event-meta">
-                📅 <strong>Data:</strong> {evento.data}
-                alle {evento.ora}
+                📅 <strong>Data:</strong> {evento.data} alle {evento.ora}
                 &nbsp; | &nbsp;
                 📍 <strong>Luogo:</strong> {evento.luogo}
               </div>
-
               <p>{evento.descrizione}</p>
-
             </article>
           ))}
-
         </div>
       )}
 
       <div class="center-btn">
-        <a
-          href={`${import.meta.env.BASE_URL}/eventi`}
-          class="btn btn-primary"
-        >
-          Tutti gli eventi →
-        </a>
+        <a href={`${base}/eventi`} class="btn btn-primary">Tutti gli eventi →</a>
       </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========== PARLANO DI NOI ========== -->
+ <section class="press-section">
+  <div class="page-container">
+
+    <span class="section-label section-label-center">RASSEGNA STAMPA</span>
+    <h2 class="section-title">Parlano di noi</h2>
+
+    <div class="press-list">
+      {primiArticoli.map((a) => (
+        <article class="press-card">
+          <div class="press-top">
+            <span class="press-source">{a.testata}</span>
+            {a.categoria && <span class="press-tag">{a.categoria}</span>}
+          </div>
+
+          <h3>{a.titolo}</h3>
+          <div class="event-meta">{formattaData(a.data)}</div>
+
+          {a.estratto && <p>{a.estratto}</p>}
+
+          {a.url && (
+            <a href={a.url} target="_blank" rel="noopener noreferrer" class="press-link">
+              Apri →
+            </a>
+          )}
+        </article>
+      ))}
+    </div>
+
+    <div class="center-btn">
+      <a href={`${base}/parlano-di-noi`} class="btn btn-primary">Tutti gli articoli →</a>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- ========== CONTATTAMI ========== -->
+  <section class="contact-section" id="contatti">
+    <div class="contact-container">
+
+      <span class="section-label section-label-center">SCRIVIMI</span>
+      <h2 class="section-title">Contattami</h2>
+
+      <!-- Sostituisci l'action con il tuo endpoint Formspree (https://formspree.io) -->
+      <form
+        class="contact-form"
+        action="https://formspree.io/f/IL_TUO_ID"
+        method="POST"
+      >
+        <label>
+          Nome
+          <input type="text" name="nome" required />
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" required />
+        </label>
+
+        <label>
+          Messaggio
+          <textarea name="messaggio" rows="6" required></textarea>
+        </label>
+
+        <button type="submit" class="btn btn-primary">Invia messaggio</button>
+      </form>
 
     </div>
   </section>
@@ -197,9 +278,7 @@ const libro = libri[0];
 
 <style>
 
-  /* =========================
-     HERO FULL SCREEN
-     ========================= */
+  /* ========== HERO ========== */
 
   .hero {
     position: relative;
@@ -219,56 +298,57 @@ const libro = libri[0];
     object-position: center;
   }
 
-  /*
-   * Sfumatura rossa:
-   * molto presente a sinistra,
-   * quasi trasparente verso destra.
-   */
+  .press-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .press-source {
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--pd-red);
+  }
+
+  .press-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    background: #f3f4f6;
+    color: #4b5563;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+  }
+
   .hero-overlay {
     position: absolute;
     inset: 0;
-
-    background:
-      linear-gradient(
-        90deg,
-        rgba(170, 0, 0, 0.90) 0%,
-        rgba(190, 20, 20, 0.70) 30%,
-        rgba(211, 47, 47, 0.25) 60%,
-        rgba(211, 47, 47, 0) 85%
-      );
+    background: linear-gradient(
+      90deg,
+      rgba(170, 0, 0, 0.90) 0%,
+      rgba(190, 20, 20, 0.70) 30%,
+      rgba(211, 47, 47, 0.25) 60%,
+      rgba(211, 47, 47, 0) 85%
+    );
   }
 
   .hero-content {
     position: absolute;
     left: 8%;
     bottom: 10%;
-
     max-width: 520px;
-
     z-index: 2;
-  }
-
-  .pd-logo {
-    width: 105px;
-    height: auto;
-    margin-bottom: 1.2rem;
-
-    background: white;
-    border-radius: 50%;
-    padding: 3px;
-
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
   }
 
   .hero-content h1 {
     font-size: clamp(3rem, 6vw, 5.5rem);
     line-height: 0.95;
     font-weight: 900;
-
     margin-bottom: 1.2rem;
-
     letter-spacing: -2px;
-
     text-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
   }
 
@@ -276,44 +356,39 @@ const libro = libri[0];
     font-size: clamp(1.1rem, 2vw, 1.45rem);
     line-height: 1.5;
     max-width: 480px;
-
     font-weight: 400;
-
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
 
 
-  /* =========================
-     GENERALE
-     ========================= */
+  /* ========== GENERALE ========== */
 
   .page-container {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 5rem 1.5rem;
   }
 
   .section-label {
     display: block;
-
     color: var(--pd-red);
-
     font-size: 0.8rem;
     font-weight: 800;
-
     letter-spacing: 2px;
-
     margin-bottom: 0.7rem;
   }
 
-  .section-label-center {
+  .section-label-center { text-align: center; }
+
+  .section-title {
     text-align: center;
+    font-size: clamp(2rem, 4vw, 2.7rem);
+    margin-bottom: 2rem;
+    color: #111827;
   }
 
 
-  /* =========================
-     BIOGRAFIA
-     ========================= */
+  /* ========== CHI SONO ========== */
 
   .bio-section {
     background: white;
@@ -321,266 +396,311 @@ const libro = libri[0];
   }
 
   .bio-container {
-    max-width: 1100px;
+    max-width: 800px;
     margin: 0 auto;
-
-    display: grid;
-    grid-template-columns: 1fr 0.9fr;
-
-    align-items: center;
-
-    gap: 5rem;
   }
 
-  .bio-content h2 {
+  .bio-container h2 {
     font-size: clamp(2rem, 4vw, 3rem);
-
     margin-bottom: 1.5rem;
-
     color: #111827;
   }
 
-  .bio-content p {
+  .bio-container p {
     color: #4b5563;
-
     font-size: 1.05rem;
     line-height: 1.7;
-
     margin-bottom: 1rem;
-
-    max-width: 550px;
   }
 
-  .bio-content .btn {
-    margin-top: 1rem;
-  }
-
-  .bio-image-wrapper {
-    position: relative;
-  }
-
-  .bio-image {
-    display: block;
-
-    width: 100%;
-    aspect-ratio: 4 / 5;
-
-    object-fit: cover;
-
-    border-radius: 4px;
-
-    box-shadow: 15px 15px 0 var(--pd-red);
-  }
+  .bio-container .btn { margin-top: 1rem; }
 
 
-  /* =========================
-     LIBRO
-     ========================= */
+  /* ========== LIBRO ========== */
 
   .book-section {
     background-color: #f3f4f6;
-
     padding: 6rem 1.5rem;
   }
 
   .book-container {
     max-width: 1000px;
-
     margin: 0 auto;
-
     display: grid;
-
     grid-template-columns: 280px 1fr;
-
     align-items: center;
-
     gap: 5rem;
   }
 
   .book-image-wrapper {
+    position: relative;
     text-align: center;
+  }
+
+  .book-badge {
+    position: absolute;
+    top: -14px;
+    left: -14px;
+    z-index: 2;
+    background: var(--pd-red);
+    color: white;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    transform: rotate(-6deg);
   }
 
   .book-cover {
     display: inline-block;
-
     width: 100%;
     max-width: 280px;
-
     height: auto;
-
-    box-shadow:
-      0 15px 30px rgba(0, 0, 0, 0.18);
-
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
     border-radius: 2px;
   }
 
   .book-content h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
-
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
     color: #111827;
-
     line-height: 1.1;
-
-    margin-bottom: 0.5rem;
-  }
-
-  .book-subtitle {
-    font-size: 1.1rem;
-
-    color: #6b7280;
-
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.8rem;
   }
 
   .book-meta {
     display: flex;
-
     gap: 1rem;
-
     margin-bottom: 1.5rem;
-
     font-size: 0.9rem;
-
     color: #6b7280;
   }
 
   .book-meta span + span::before {
     content: "•";
-
     margin-right: 1rem;
-
     color: var(--pd-red);
   }
 
   .book-description {
     color: #4b5563;
-
     line-height: 1.7;
-
     margin-bottom: 1.5rem;
-
     max-width: 650px;
   }
 
 
-  /* =========================
-     EVENTI
-     ========================= */
+  /* ========== LE MIE BATTAGLIE ========== */
 
-  .events-section {
-    background: white;
+  .battles-section { background: white; }
 
-    padding: 1rem 0 5rem;
+  .battles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
   }
 
-  .section-title {
-    text-align: center;
+  .battle-card {
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    border-top: 5px solid var(--pd-red);
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+  }
 
-    font-size: clamp(2rem, 4vw, 2.7rem);
-
-    margin-bottom: 2rem;
-
+  .battle-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
     color: #111827;
+  }
+
+  .battle-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 3px;
+    margin-bottom: 1rem;
+  }
+
+  .battle-card p {
+    color: #4b5563;
+    line-height: 1.65;
+    font-size: 0.97rem;
+  }
+
+
+  /* ========== EVENTI ========== */
+
+  .events-section {
+    background: #f3f4f6;
   }
 
   .events-list {
     display: flex;
     flex-direction: column;
-
     gap: 1rem;
-
     margin-bottom: 2rem;
   }
 
   .event-card {
     background: white;
-
     border-radius: 4px;
-
     padding: 1.5rem;
-
     border-left: 5px solid var(--pd-red);
-
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
   }
 
   .event-card h3 {
     margin-bottom: 0.5rem;
-
     color: #111827;
   }
 
   .event-meta {
     font-size: 0.85rem;
-
     color: #6b7280;
-
     margin-bottom: 0.7rem;
   }
 
   .event-card p {
     line-height: 1.6;
-
     color: #4b5563;
   }
 
 
-  /* =========================
-     BUTTONS
-     ========================= */
+  /* ========== PARLANO DI NOI ========== */
 
-  .center-btn {
-    text-align: center;
+  .press-section { background: white; }
+
+  .press-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
   }
+
+  .press-card {
+    background: white;
+    border-radius: 4px;
+    padding: 1.5rem;
+    border-left: 5px solid var(--pd-red);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .press-card h3 {
+    font-size: 1.1rem;
+    line-height: 1.3;
+    color: #111827;
+    margin-bottom: 0.5rem;
+  }
+
+  .press-card p {
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .press-link {
+    margin-top: auto;
+    color: var(--pd-red);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .press-link:hover { text-decoration: underline; }
+
+
+  /* ========== CONTATTAMI ========== */
+
+  .contact-section {
+    background: #f3f4f6;
+    padding: 5rem 1.5rem;
+  }
+
+  .contact-container {
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .contact-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-weight: 600;
+    color: #111827;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    padding: 0.8rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font: inherit;
+    background: white;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: 2px solid var(--pd-red);
+    border-color: transparent;
+  }
+
+  .contact-form .btn {
+    align-self: flex-start;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+
+  /* ========== BOTTONI ========== */
+
+  .center-btn { text-align: center; }
 
   .btn {
     display: inline-block;
-
     padding: 0.8rem 1.5rem;
-
     border-radius: 4px;
-
     text-decoration: none;
-
     font-weight: 700;
-
-    transition:
-      background-color 0.2s ease,
-      transform 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease;
   }
 
-  .btn:hover {
-    transform: translateY(-2px);
-  }
+  .btn:hover { transform: translateY(-2px); }
 
   .btn-primary {
     background-color: var(--pd-red);
-
     color: white;
   }
 
-  .btn-primary:hover {
-    background-color: var(--pd-red-dark);
-  }
-
-
-  /* =========================
-     NESSUN DATO
-     ========================= */
+  .btn-primary:hover { background-color: var(--pd-red-dark); }
 
   .no-data {
     text-align: center;
-
     color: #6b7280;
-
     padding: 2rem;
   }
 
 
-  /* =========================
-     MOBILE
-     ========================= */
+  /* ========== MOBILE ========== */
+
+  @media (max-width: 900px) {
+    .battles-grid,
+    .press-list {
+      grid-template-columns: 1fr;
+    }
+  }
 
   @media (max-width: 768px) {
 
@@ -589,18 +709,15 @@ const libro = libri[0];
       min-height: 550px;
     }
 
-    .hero-background {
-      object-position: 60% center;
-    }
+    .hero-background { object-position: 60% center; }
 
     .hero-overlay {
-      background:
-        linear-gradient(
-          180deg,
-          rgba(170, 0, 0, 0.05) 20%,
-          rgba(170, 0, 0, 0.35) 45%,
-          rgba(170, 0, 0, 0.92) 100%
-        );
+      background: linear-gradient(
+        180deg,
+        rgba(170, 0, 0, 0.05) 20%,
+        rgba(170, 0, 0, 0.35) 45%,
+        rgba(170, 0, 0, 0.92) 100%
+      );
     }
 
     .hero-content {
@@ -609,82 +726,33 @@ const libro = libri[0];
       bottom: 8%;
     }
 
-    .pd-logo {
-      width: 80px;
-      margin-bottom: 1rem;
-    }
-
     .hero-content h1 {
       font-size: clamp(2.7rem, 12vw, 4rem);
       letter-spacing: -1px;
     }
 
-    .hero-subtitle {
-      font-size: 1.05rem;
-    }
+    .hero-subtitle { font-size: 1.05rem; }
 
+    .bio-section { padding: 4rem 1.5rem; }
 
-    /* BIO */
-
-    .bio-section {
-      padding: 4rem 1.5rem;
-    }
-
-    .bio-container {
-      grid-template-columns: 1fr;
-
-      gap: 3rem;
-    }
-
-    .bio-image-wrapper {
-      order: -1;
-    }
-
-    .bio-image {
-      aspect-ratio: 16 / 10;
-
-      box-shadow: 8px 8px 0 var(--pd-red);
-    }
-
-
-    /* LIBRO */
-
-    .book-section {
-      padding: 4rem 1.5rem;
-    }
+    .book-section { padding: 4rem 1.5rem; }
 
     .book-container {
       grid-template-columns: 1fr;
-
       gap: 2.5rem;
-
       text-align: center;
     }
 
     .book-image-wrapper {
       order: -1;
-    }
-
-    .book-cover {
       max-width: 220px;
+      margin: 0 auto;
     }
 
-    .book-meta {
-      justify-content: center;
-    }
+    .book-cover { max-width: 220px; }
+    .book-meta { justify-content: center; }
 
-
-    /* EVENTI */
-
-    .page-container {
-      padding: 4rem 1.5rem;
-    }
-
-    .events-section {
-      padding-bottom: 3rem;
-    }
-
+    .page-container { padding: 4rem 1.5rem; }
   }
 
 </style>
-```
